@@ -1,0 +1,22 @@
+(use 'validis.queries.query-defs)
+(use 'validis.db.query-defs)
+conn
+(doc conn)
+(conn)
+(db)
+db
+(mc/insert db "documents" { :_id (ObjectId.) :first_name "John" :last_name "Lennon" })
+(use 'validis.db.query-defs)
+(mc/insert db "documents" { :_id (ObjectId.) :first_name "John" :last_name "Lennon" })
+(:require [monger.collection :as mc])
+(let [conn (mg/connect)
+      db   (mg/get-db conn "monger-test")]
+  (mc/insert db "owners" {:name "John" :age 30 :pets ["Sam" "Chelsie"]})
+)
+(let [conn (mg/connect)
+      db   (mg/get-db conn "monger-test")]
+(use 'validis.db.query-defs)
+(repl/refresh)
+(require '[clojure.tools.namespace.repl :as repl])
+(require '[clojure.tools.namespace.repl :refer [refresh]])
+(refresh)
