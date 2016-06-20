@@ -4,13 +4,6 @@
             [validis.routes.user     :refer [user-routes]]
             [validis.routes.auth     :refer [auth-routes]]))
 
-; (s/defschema Pizza
-;   {:name s/Str
-;    (s/optional-key :description) s/Str
-;    :size (s/enum :L :M :S)
-;    :origin {:country (s/enum :FI :PO)
-;             :city s/Str}})
-
 (defapi app
   {:swagger
    {:ui "/"
@@ -18,8 +11,8 @@
     :data {:info {:title "Validis"
                   :description "Cloud based runtime monitoring system for clinical information systems"
                   :version "0.0.1"}
-           :tags [{:name "User" :description "Create, delete and update user details"}]}}}
+           :tags [{:name "User" :description "Create, delete and update user details"}
+                  {:name "Auth" :description "View authentication details for a user!"}]}}}
 
   user-routes
-  auth-routes
-  )
+  auth-routes)

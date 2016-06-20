@@ -5,10 +5,32 @@
             [validis.route-functions.user.create-user :refer [create-user-response]]
             [validis.route-functions.user.delete-user :refer [delete-user-response]]
             [validis.route-functions.user.modify-user :refer [modify-user-response]]
-            [compojure.api.sweet                      :refer :all]))
+            [ring.swagger.json-schema                 :as json-schema]
+            [schema.core                              :as s]
+            [compojure.api.sweet                      :refer :all])
+  (:import  [org.bson.types ObjectId]))
 
-;; Assumed for now that we are going to have the user ID as a string when it
-;; actually is a Uuid
+;; Test schema for a Pizza!
+; (s/defschema Pizza
+;   {:name s/Str
+;    (s/optional-key :description) s/Str
+;    :size (s/enum :L :M :S)
+;    :origin {:country (s/enum :FI :PO)
+;             :city s/Str}})
+
+; More details to be added later
+;; Let us say that the user ID is of the type :_id (org.bson.types.ObjectId.)
+;; Hence the User schema can be defined as:
+(s/defschema User
+  {:name s/Str
+   :username s/Str
+   :password s/Str
+   :id (ObjectId.)
+   })
+
+;; Add swagger support for ObjectId
+;; adding swagger-support for ObjectId
+(defmethod json-schema/json-type ObjectId [_] {:type "string"})
 
 (def user-routes
   "Specify routes for the user functions"
