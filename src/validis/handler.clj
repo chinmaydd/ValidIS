@@ -1,8 +1,8 @@
 (ns validis.handler
-  (:require [compojure.api.sweet :refer :all]
+  (:require [compojure.api.sweet     :refer :all]
             [ring.util.http-response :refer :all]
-            [validis.routes.user :refer [user-routes]]
-            [schema.core :as s]))
+            [validis.routes.user     :refer [user-routes]]
+            [validis.routes.auth     :refer [auth-routes]]))
 
 ; (s/defschema Pizza
 ;   {:name s/Str
@@ -20,4 +20,6 @@
                   :version "0.0.1"}
            :tags [{:name "User" :description "Create, delete and update user details"}]}}}
 
-  user-routes)
+  user-routes
+  auth-routes
+  )
