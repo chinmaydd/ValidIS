@@ -5,13 +5,20 @@
                  [clj-time                   "0.11.0"]
                  [metosin/compojure-api      "1.1.1"]
                  [com.novemberain/monger     "3.0.2"]
+                 [http-kit                   "2.1.18"]
                  [environ                    "1.0.3"]
                  [buddy                      "1.0.0"]
                  ]
+
+  :plugins [[lein-environ "1.0.2"]
+            [funcool/codeina "0.3.0" :exclusions [org.clojure/clojure]]
+            ]
+
   :ring {:handler validis.handler/app}
   :uberjar-name "server.jar"
-  :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
+  :profiles {:dev [{:dependencies [[javax.servlet/servlet-api "2.5"]
                                   [cheshire                  "5.5.0"]
                                   [ring/ring-mock            "0.3.0"]]
-
-                   :plugins [[lein-ring     "0.9.7"]]}})
+                    :plugins      [[lein-ring     "0.9.7"]]}
+                    ;; Set in ./profiles.clj
+                    :dev-env-vars]})

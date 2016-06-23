@@ -8,7 +8,7 @@
             [ring.swagger.json-schema                 :as json-schema]
             [schema.core                              :as s]
             [compojure.api.sweet                      :refer :all])
-  (:import  [org.bson.types ObjectId]))
+  (:import  [org.bson.types.ObjectId]))
 
 ;; Test schema for a Pizza!
 ; (s/defschema Pizza
@@ -25,12 +25,8 @@
   {:name s/Str
    :username s/Str
    :password s/Str
-   :id (ObjectId.)
+   :id s/Str
    })
-
-;; Add swagger support for ObjectId
-;; adding swagger-support for ObjectId
-(defmethod json-schema/json-type ObjectId [_] {:type "string"})
 
 (def user-routes
   "Specify routes for the user functions"
@@ -44,13 +40,13 @@
           :summary      "Create a new user with provided username, email and password."
           (create-user-response email username password))
 
-    (DELETE "/:id"        {:as request}
-             :path-params [id :- String]
-             :header-params [authorization :- String]
-             :return      {:message String}
-             :middleware  [token-auth-mw cors-mw authenticated-mw]
-             :summary     "Deletes the specified user. Requires token to have `admin` auth or self ID."
-             :description "Authorization header expects the following format 'Token {token}'"
+    (DELETE "/:id"            {:as request}
+             :path-params     [id :- String]
+             :header-params   [authorization :- String]
+             :return          {:message String}
+             :middleware      [token-auth-mw cors-mw authenticated-mw]
+             :summary         "Deletes the specified user. Requires token to have `admin` auth or self ID."
+             :description     "Authorization header expects the following format 'Token {token}'"
              (delete-user-response request id))
 
     (PATCH  "/:id"          {:as request}

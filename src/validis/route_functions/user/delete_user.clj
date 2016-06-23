@@ -13,7 +13,7 @@
 (defn delete-user-response
   "Deletes a user with the id provided"
   [request id]
-  (let [auth  (get-in request [:identity :permissions])
+  (let [auth  (get-in request [:identity])
         deleting-self? (= (str id) (get-in request [:identity :id]))]
     (if (or (.contains auth "admin") deleting-self?)
       (delete-user id)

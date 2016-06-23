@@ -16,6 +16,7 @@
       {:user-data (-> registered-user
                       (assoc-in [:username] (str (:username registered-user)))
                       (assoc-in [:email]    (str (:email registered-user)))
+                      (assoc-in [:id]       (str (:_id registered-user)))
                       (dissoc   :created_on)
                       (dissoc   :password))
        :password  (:password registered-user)})))
@@ -27,7 +28,7 @@
    valid user email in the username field. It is a little strange but to adhere
    to legacy basic auth api of using username:password we have to make the
    field do double duty."
-  [request, auth-data]
+  [request auth-data]
   (let [identifier  (:username auth-data)
         password    (:password auth-data)
         user-info   (get-user-info identifier)]

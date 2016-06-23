@@ -20,7 +20,7 @@
   "User is allowed to update attributes for a user if the requester is
    modifying attributes associated with its own id or has admin permissions."
   [request id username password email]
-  (let [auth              (get-in request [:identity :permissions])
+  (let [auth              (get-in request [:identity])
         current-user-info (query/get-registered-user-by-id {:id id})
         admin?            (.contains auth "admin")
         modifying-self?   (= (str id) (get-in request [:identity :id]))

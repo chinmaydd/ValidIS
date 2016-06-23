@@ -11,7 +11,7 @@
   (context "/api/auth" []
      (GET "/"            {:as request}
            :tags          ["Auth"]
-           :return        {:id String :username String :permissions String :token String :refreshToken String}
+           :return        {:id String :username String :token String :refreshToken String}
            :header-params [authorization :- String]
            :middleware    [basic-auth-mw cors-mw authenticated-mw]
            :summary       "Returns auth info given a username and password in the '`Authorization`' header."
