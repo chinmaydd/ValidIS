@@ -19,7 +19,6 @@
 ;             :city s/Str}})
 
 ; More details to be added later
-;; Let us say that the user ID is of the type :_id (org.bson.types.ObjectId.)
 ;; Hence the User schema can be defined as:
 (s/defschema User
   {:name s/Str

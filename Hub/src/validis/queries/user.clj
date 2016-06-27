@@ -19,12 +19,13 @@
 (defn update-registered-user!
   "Updates a user document in the database based on the information sent in the request."
   [user_data]
+  (println user_data)
   ;; Need to check if there are any database errors due to this fact.
-  (mc/update-by-id db "users" (ObjectId. (:id user_data)) user_data))
+  (mc/update-by-id db "users" {:_id (ObjectId. (:id user_data))} {$set user_data}))
 
 (defn get-registered-user-by-id
   [user_data]
-  (mc/find-one-as-map db "users" {:_id (ObjectId. (:id user_data))}) )
+  (mc/find-one-as-map db "users" {:_id (ObjectId. (:id user_data))}))
 
 (defn get-registered-user-details-by-username
   [user_data]

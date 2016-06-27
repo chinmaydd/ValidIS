@@ -1,15 +1,15 @@
 (ns validis.routes.auth
-  (:require [validis.middleware.basic-auth :refer [basic-auth-mw]]
-            [validis.middleware.authenticated :refer [authenticated-mw]]
-            [validis.middleware.cors :refer [cors-mw]]
+  (:require [validis.middleware.basic-auth                     :refer [basic-auth-mw]]
+            [validis.middleware.authenticated                  :refer [authenticated-mw]]
+            [validis.middleware.cors                           :refer [cors-mw]]
             [validis.route-functions.auth.get-auth-credentials :refer [auth-credentials-response]]
-            [schema.core :as s]
-            [compojure.api.sweet :refer :all]))
+            [schema.core                                       :as s]
+            [compojure.api.sweet                               :refer :all]))
 
 (def auth-routes
   "Specify routes for Authentication functions"
   (context "/api/auth" []
-     (GET "/"            {:as request}
+     (GET "/"             {:as request}
            :tags          ["Auth"]
            :return        {:id String :username String :token String :refreshToken String}
            :header-params [authorization :- String]
