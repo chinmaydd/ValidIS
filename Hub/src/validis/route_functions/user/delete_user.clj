@@ -15,6 +15,6 @@
   [request id]
   (let [auth  (get-in request [:identity])
         deleting-self? (= (str id) (get-in request [:identity :id]))]
-    (if (or (.contains auth "admin") deleting-self?)
+    (if deleting-self?
       (delete-user id)
       (respond/unauthorized {:error "Not authorized"}))))

@@ -13,4 +13,4 @@
                            (update-in [:email] str)
                            (assoc     :exp (time/plus (time/now) (time/seconds 900))))
         token-contents (select-keys stringify-user [:username :email :id :exp])]
-    (jwt/sign token-contents (env :auth-key))))
+    (jwt/sign token-contents (env :auth-key) {:alg :hs512})))

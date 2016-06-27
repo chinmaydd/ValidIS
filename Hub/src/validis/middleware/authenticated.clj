@@ -7,6 +7,7 @@
    authenticated a 401 not authorized response will be returned"
   [handler]
   (fn [request]
+    (println request)
     (if (authenticated? request)
       (handler request)
       (unauthorized {:error "Not authorized"}))))
