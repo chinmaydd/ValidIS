@@ -19,10 +19,9 @@
 
 (defn modify-user-response
   "User is allowed to update attributes for a user if the requester is
-   modifying attributes associated with its own id or has admin permissions."
+  modifying attributes associated with its own id or has admin permissions."
   [request id username password email]
-  (let [auth              (get-in request [:identity])
-        current-user-info (query/get-registered-user-by-id {:id id})
+  (let [current-user-info (query/get-registered-user-by-id {:id id})
         modifying-self?   (= (str id) (get-in request [:identity :id]))
         modify?           (and modifying-self? (not-empty current-user-info))]
     (cond
