@@ -12,4 +12,6 @@
                                                 :location location
                                                 :owner_id (ObjectId. id)
                                                 })]
-    (respond/created {:name (str (:name new-network))})))
+    (respond/created {:name (str (:name new-network))
+                      :id (str (:id new-network))
+                      })))
