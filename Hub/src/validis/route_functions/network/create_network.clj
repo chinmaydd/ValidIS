@@ -10,7 +10,7 @@
   [name location id]
   (let [new-network (query/create-new-network! {:name name
                                                 :location location
-                                                :owner_id (ObjectId. id)
+                                                :owner-id (ObjectId. id)
                                                 })]
     (respond/created {:name (str (:name new-network))
                       :id (str (:id new-network))

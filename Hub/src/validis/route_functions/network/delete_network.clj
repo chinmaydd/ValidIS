@@ -19,7 +19,7 @@
                                 ;; Authorization creds   
                                 (= id (get-in request [:identity :id]))
                                 (= 0 (query/check-if-owned-network? {:id network-id 
-                                                                     :owner_id id})))]
+                                                                     :owner-id id})))]
     (if deleting-own-network?
       (delete-network network-id)
       (respond/unauthorized {:error "Not authorized"}))))

@@ -14,7 +14,7 @@
   "Checks if the user id provided matches with the owner user id of the network"
   ;; Bug in monger. Need to fix!
   [network-data]
-  (if (= (str (:owner_id (mc/find-one-as-map db "networks" {:_id (ObjectId. (:id network-data))} [:owner_id]))) (:owner_id network-data))
+  (if (= (str (:owner-id (mc/find-one-as-map db "networks" {:_id (ObjectId. (:id network-data))} [:owner-id]))) (:owner-id network-data))
   0
   1))
 
