@@ -20,12 +20,12 @@
 
 ; More details to be added later
 ;; Hence the User schema can be defined as:
-(s/defschema User
-  {:name s/Str
-   :username s/Str
-   :password s/Str
-   :id s/Str
-   })
+;; (s/defschema User
+;;  {:name s/Str
+;;   :username s/Str
+;;   :password s/Str
+;;   :id s/Str
+;;   })
 
 (def user-routes
   "Specify routes for the user functions"

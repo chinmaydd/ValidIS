@@ -13,8 +13,7 @@
 (defn delete-user-response
   "Deletes a user with the id provided"
   [request id]
-  (let [auth  (get-in request [:identity])
-        deleting-self? (= (str id) (get-in request [:identity :id]))]
+  (let [deleting-self? (= (str id) (get-in request [:identity :id]))]
     (if deleting-self?
       (delete-user id)
       (respond/unauthorized {:error "Not authorized"}))))
