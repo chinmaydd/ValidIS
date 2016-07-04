@@ -1,3 +1,4 @@
+;; src/route-functions/user/create-user.clj
 (ns validis.route-functions.user.create-user
   (:require [validis.queries.user    :as query]
             [buddy.hashers           :as hashers]
@@ -10,7 +11,7 @@
         new-user        (query/insert-user {:email email
                                             :username username
                                             :password hashed-password})]
-    (respond/created {:username (str (:username new-user))})))
+    (respond/created {:username username})))
 
 
 (defn create-user-response

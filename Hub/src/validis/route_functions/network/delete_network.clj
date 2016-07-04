@@ -1,3 +1,4 @@
+;; src/route-functions/network/delete-network.clj
 (ns validis.route-functions.network.delete-network
   (:require [validis.queries.network :as query]
             [ring.util.http-response :as respond])
@@ -8,12 +9,11 @@
   [network-id]
   (let [deleted-network (query/delete-network {:id network-id})]
     (if (not= 0 deleted-network)
-      (respond/ok {:message (format "Network with id %s removed successfully!" network-id)})
-      ;; Consider the other cases as well.
-      (respond/not-found {:error "Something went wrong."}))))
+      (respond/ok        {:message (format "Network with id %s removed successfully!" network-id)})
+      (respond/not-found {:error "Network does not exist."}))))
 
 (defn delete-network-response
-  "Deletes a network with the id provided"
+  "Generate a response on deletion of a network."
   [request owner-id network-id]
   (let [deleting-own-network? (and
                                 ;; Authorization creds and token verification 

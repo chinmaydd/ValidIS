@@ -60,6 +60,15 @@
   (let [id (object-id (:network-id network-data))]
   (mc/find-one-as-map db "networks" {:_id id})))
 
+(defn get-network-by-name
+  "Returns a network with the name, if exists.
+  Network data is of the form:
+  {:name}
+  "
+  [network-data]
+  (let [name (:name network-data)]
+    (mc/find-one-as-map db "networks" {:name name})))
+
 (defn check-if-owned-network?
   "Checks if the user-id provided matches with the owner's user-id of the network.
   Returns 0 if true, 1 otherwise.

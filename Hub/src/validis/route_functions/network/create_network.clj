@@ -1,17 +1,24 @@
+;; src/route-functions/network/create-network.clj
 (ns validis.route-functions.network.create-network
   (:require [validis.queries.network    :as query]
             [buddy.hashers              :as hashers]
             [ring.util.http-response    :as respond])
   (:import org.bson.types.ObjectId))
 
+(defn create-network
+  "Create a network with `name`, `location` and `owner-id`."
+  [name location owner-id]
+  (let [new-network (query/create-new-network {:name name
+                                               :location location
+                                               :owner-id (ObjectId. owner-id)})]
+    (respond/created {:name name :id (str (:id new-network))})))
 
 (defn create-network-response
-  "Create a new network with the provided information `name`, `location`. Owner ID is assigned based on the authentication of the ID provided."
-  [name location id]
-  (let [new-network (query/create-new-network {:name name
-                                                :location location
-                                                :owner-id (ObjectId. id)
-                                                })]
-    (respond/created {:name (str (:name new-network))
-                      :id (str (:id new-network))
-                      })))
+  "Generates a response on creation of a network. `owner-id` is assigned through the id present in the `:identity` field in the request."
+  [request name location]
+  (let [owner-id        (get-in request [:identity :id])
+        network-query   (query/get-network-by-name {:name name})
+        network-exists? (not-empty network-query)]
+    (if network-exists?
+      (respond/conflict {:error "Network already exists!"})
+      (create-network name location owner-id))))
