@@ -1,43 +1,88 @@
+;; src/queries/user.clj
 (ns validis.queries.user
   (:require [monger.collection  :as    mc]
             [validis.db-handler :refer [db]]
             [monger.conversion  :refer [from-db-object]]
-            [monger.operators   :refer :all])
+            [monger.operators   :refer :all]
+            [monger.util        :refer [object-id]])
   (:import org.bson.types.ObjectId))
 
-(defn insert-registered-user!
-  "Inserts a registered user data(document) into the database"
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Insertion queries for User ;;          
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn insert-user
+  "Inserts a user into the database.
+  User data is of the form:
+  {:email :username :password}
+  "
   [user-data]
   (mc/insert-and-return db "users" user-data))
 
-;; We need to invoke getN since the only way we can check if the document was deleted is to check the number of updated/inserted/deleted documents. We can directly return this value.
-(defn delete-registered-user!
-  "Deletes a user from the database with the id provided"
-  [user-data]
-  (.getN (mc/remove-by-id db "users" (ObjectId. (:id user-data)))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Updation queries for User ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defn update-registered-user!
-  "Updates a user document in the database based on the information provided"
+(defn update-user
+  "Updates a user in the database.
+  User data is of the form:
+  {:id :username :email :password}
+  "
   [user-data]
-  ;; Need to check if there are any database errors due to this fact.
-  (mc/update-by-id db "users" {:_id (ObjectId. (:id user-data))} {$set user-data}))
+  (let [id (object-id (:id user-data))]
+  (mc/update-by-id db "users" {:_id id} {$set user-data})))
 
-(defn get-registered-user-by-id
-  "Returns a registered user with the id provided"
+(defn update-user-refresh-token
+  "Updates the refresh token for the user.
+  User data is of the form:
+  {:id :refresh-token}
+  "
   [user-data]
-  (mc/find-one-as-map db "users" {:_id (ObjectId. (:id user-data))}))
+  (let [id            (object-id (:id user-data))
+        refresh-token (:refresh-token user-data)]
+  (mc/update db "users" {:_id id} {$set {:refresh_token refresh-token}})))
 
-(defn get-registered-user-details-by-username
-  "Returns a registered user with the details provided"
-  [user-data]
-  (mc/find-one-as-map db "users" user-data))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Deletion queries for User ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defn get-registered-user-details-by-email
-  "Returns a registered user with the details provided"
+;; HACK: We need to invoke `.getN` since the only way we can check if the document was deleted is to check the number of updated/inserted/deleted documents. We can directly return this value.
+(defn delete-user
+  "Deletes a user with the id.
+  User data is of the form:
+  {:id}
+  "
   [user-data]
-  (mc/find-one-as-map db "users" user-data))
+  (let [id (object-id (:id user-data))]
+  (.getN (mc/remove-by-id db "users" id))))
 
-(defn update-registered-user-refresh-token!
-  "Updates the refresh token for the registered user"
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Getter functions for User ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn get-user-by-id
+  "Returns a user with the id, if exists.
+  User data is of the form:
+  {:id}
+  "
   [user-data]
-  (mc/update db "users" {:_id (ObjectId. (:id user-data))} {$set {:refresh_token (:refresh_token user-data)}}))
+  (let [id (object-id (:id user-data))]
+  (mc/find-one-as-map db "users" {:_id id})))
+
+(defn get-user-by-username
+  "Returns a user with the username, if exists.
+  User data is of the form:
+  {:username}
+  "
+  [user-data]
+  (let [username (:username user-data)]
+  (mc/find-one-as-map db "users" {:username username})))
+
+(defn get-user-by-email
+  "Returns a user with the email, if exists.
+  User data is of the form:
+  {:email}
+  "
+  [user-data]
+  (let [email (:email user-data)]
+  (mc/find-one-as-map db "users" {:email email})))

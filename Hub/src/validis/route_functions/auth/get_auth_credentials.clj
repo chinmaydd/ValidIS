@@ -1,7 +1,8 @@
+;; src/route-functions/auth/get-auth-credentials.clj
 (ns validis.route-functions.auth.get-auth-credentials
   (:require [validis.general-functions.user.create-token :refer [create-token]]
-            [validis.queries.user :as query]
-            [ring.util.http-response :as respond]))
+            [validis.queries.user                        :as query]
+            [ring.util.http-response                     :as respond]))
 
 (defn auth-credentials-response
   "Generate response for get requests to /api/auth. This route requires basic
@@ -10,7 +11,7 @@
   [request]
   (let [user          (:identity request)
         refresh-token (str (java.util.UUID/randomUUID))
-        _             (query/update-registered-user-refresh-token! {:refresh_token refresh-token :id (:id user)})]
+        _             (query/update-user-refresh-token {:refresh_token refresh-token :id (:id user)})]
     (respond/ok {:id            (:id user)
                  :username      (:username user)
                  :token         (create-token user)
