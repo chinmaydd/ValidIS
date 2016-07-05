@@ -4,8 +4,7 @@
             [validis.db-handler :refer [db]]
             [monger.conversion  :refer [from-db-object]]
             [monger.operators   :refer :all]
-            [monger.util        :refer [object-id]])
-  (:import org.bson.types.ObjectId))
+            [monger.util        :refer [object-id]]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Create a new network ;;
@@ -31,6 +30,16 @@
  [network-data]
   (let [id (object-id (:network-id network-data))]
   (mc/update-by-id db "networks" {:_id id} {$set network-data})))
+
+(defn add-cis-to-network
+  "Adds a CIS to a given network
+   Network data is of the form:
+  {:cis-id :network-id}
+  "
+  [network-data]
+  (let [network-id (object-id (:network-id network-data))
+        cis-id (object-id (:cis-id network-data))]
+    (mc/update-by-id db "networks" {:_id network-id} {$push {:cis cis-id}})))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Deletion queries for Network ;;
@@ -75,7 +84,6 @@
   Network data is of the form:
   {:network-id :owner-id}
   "
-  ;; Bug in monger. Need to fix!
   [network-data]
   (let [network-id (object-id (:network-id network-data))
         owner-id   (:owner-id (network-data))]

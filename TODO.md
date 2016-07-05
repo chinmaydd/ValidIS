@@ -21,3 +21,5 @@
 [11] Add CIS addition/deletion functionality
 
 [12] Access control for the network data.
+
+[13] Setup an install script on the TPS so that the particular CIS is added to the database.

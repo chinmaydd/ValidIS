@@ -1,3 +1,4 @@
+;; src/routes/network.clj
 (ns validis.routes.network
   (:require [validis.middleware.cors                        :refer [cors-mw]]
             [validis.middleware.token-auth                  :refer [token-auth-mw]]
@@ -5,7 +6,8 @@
             [validis.route-functions.network.create-network :refer [create-network-response]]
             [validis.route-functions.network.modify-network :refer [modify-network-response]]
             [validis.route-functions.network.delete-network :refer [delete-network-response]]
-            [compojure.api.sweet                            :refer :all])
+            [compojure.api.sweet                            :refer :all]
+            [validis.route-functions.cis.add-cis    :refer [add-cis-response]])
   (:import [org.bson.types.ObjectId]))
 
 
@@ -44,7 +46,17 @@
             :middleware        [token-auth-mw cors-mw authenticated-mw]
             :summary           "Used to delete the existing network. Requires user token and the network must belong to the user"
             :description       "Authorization header expects the following format 'Token {token}'"
-            (delete-network-response request network-id))))
+            (delete-network-response request network-id))
+    
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Network CIS interaction routes ;;
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    
+    (POST "/:network-id/:cis-id" {:as request}
+          :path-params [network-id :- String cis-id :- String]
+          :header-params [authorization :- String]
+          :return {:message String}
+          :middleware [token-auth-mw cors-mw authenticated-mw]
+          :summary "Used to add a CIS to an existing network"
+          :description "Authorization header expects the following format 'Token {token}'"
+          (add-cis-response request network-id cis-id))))
