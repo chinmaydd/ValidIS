@@ -66,7 +66,7 @@
   "
   [network-data]
   (let [owner-id (object-id (:owner-id network-data))]
-  (mc/find-maps db "networks" {"owner-id" owner-id})))
+  (vec (mc/find-maps db "networks" {"owner-id" owner-id}))))
 
 (defn get-network-by-id
   "Returns a network with the id, if exists.
