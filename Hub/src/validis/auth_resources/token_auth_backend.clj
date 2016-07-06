@@ -1,5 +1,5 @@
 (ns validis.auth-resources.token-auth-backend
-  (:require [environ.core :refer [env]]
+  (:require [environ.core              :refer [env]]
             [buddy.auth.backends.token :refer [jws-backend]]))
 
 (def token-backend

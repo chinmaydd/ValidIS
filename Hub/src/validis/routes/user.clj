@@ -10,14 +10,6 @@
             [compojure.api.sweet                      :refer :all])
   (:import  [org.bson.types.ObjectId]))
 
-;; Test schema for a Pizza!
-; (s/defschema Pizza
-;   {:name s/Str
-;    (s/optional-key :description) s/Str
-;    :size (s/enum :L :M :S)
-;    :origin {:country (s/enum :FI :PO)
-;             :city s/Str}})
-
 ; More details to be added later
 ;; Hence the User schema can be defined as:
 ;; (s/defschema User
@@ -56,4 +48,13 @@
              :middleware    [token-auth-mw cors-mw authenticated-mw]
              :summary       "Update some or all fields of a specified user. Requires token to have `admin` auth or self ID."
              :description   "Authorization header expects the following format 'Token {token}'"
-             (modify-user-response request id username password email))))
+             (modify-user-response request id username password email))
+
+    (GET "/networks" {:as request}
+            :path-params [network-id :- String]
+            :header-params [authorization :- String]
+            :return {:list HashMap}
+            :middleware [token-auth-mw cors-mw authenticated-mw]
+            :summary "Used to return a list of networks belonging to a user"
+            :description "Authorization header expecs the following format 'Token {token}'"
+            (list-network-response request))))

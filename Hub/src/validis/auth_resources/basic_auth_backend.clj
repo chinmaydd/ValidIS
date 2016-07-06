@@ -9,8 +9,8 @@
    eiter username or email as an identifier we will query for both and check
    for a match."
   [identifier]
-  (let [registered-user-username (query/get-user-by-username {:username identifier})
-        registered-user-email    (query/get-user-by-email    {:email identifier})
+  (let [registered-user-username (query/get-user-by-field {:username identifier})
+        registered-user-email    (query/get-user-by-field {:email identifier})
         registered-user          (first (remove nil? [registered-user-username registered-user-email]))]
     (when-not (nil? registered-user)
       {:user-data (-> registered-user

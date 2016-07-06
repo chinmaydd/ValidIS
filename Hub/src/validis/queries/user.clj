@@ -60,6 +60,14 @@
 ;; Getter functions for User ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defn get-user-by-field
+  "Returns a user with the field, if exists
+  User data is of the form:
+  {:field &}
+  "
+  [user-data]
+  (mc/find-one-as-map db "users" user-data))
+
 (defn get-user-by-id
   "Returns a user with the id, if exists.
   User data is of the form:
@@ -68,21 +76,3 @@
   [user-data]
   (let [id (object-id (:id user-data))]
   (mc/find-one-as-map db "users" {:_id id})))
-
-(defn get-user-by-username
-  "Returns a user with the username, if exists.
-  User data is of the form:
-  {:username}
-  "
-  [user-data]
-  (let [username (:username user-data)]
-  (mc/find-one-as-map db "users" {:username username})))
-
-(defn get-user-by-email
-  "Returns a user with the email, if exists.
-  User data is of the form:
-  {:email}
-  "
-  [user-data]
-  (let [email (:email user-data)]
-  (mc/find-one-as-map db "users" {:email email})))

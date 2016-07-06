@@ -7,8 +7,7 @@
             [validis.route-functions.network.modify-network :refer [modify-network-response]]
             [validis.route-functions.network.delete-network :refer [delete-network-response]]
             [compojure.api.sweet                            :refer :all]
-            [validis.route-functions.cis.add-cis    :refer [add-cis-response]])
-  (:import [org.bson.types.ObjectId]))
+            [validis.route-functions.cis.add-cis            :refer [add-cis-response]]))
 
 
 (def network-routes
