@@ -1,30 +1,24 @@
 (ns validis.routes.user
-  (:require [validis.middleware.cors                    :refer [cors-mw]]
+  (:require 
+            ;; Middleware inclusions
+            [validis.middleware.cors                    :refer [cors-mw]]
             [validis.middleware.token-auth              :refer [token-auth-mw]]
             [validis.middleware.authenticated           :refer [authenticated-mw]]
+            
+            ;; Route function inclusions
             [validis.route-functions.user.create-user   :refer [create-user-response]]
             [validis.route-functions.user.delete-user   :refer [delete-user-response]]
             [validis.route-functions.user.modify-user   :refer [modify-user-response]]
             [validis.route-functions.user.list-networks :refer [list-network-response]]
+            
+            ;; Schema inclusions
+            [validis.schemas.user                       :refer [User]]
+            [validis.schemas.network                    :refer [NetworksList]]
+            
+            ;; Utility libs
             [ring.swagger.json-schema                   :as json-schema]
             [schema.core                                :as s]
-            [compojure.api.sweet                        :refer :all])
-  (:import  [org.bson.types.ObjectId]))
-
-(s/defschema Network
-  {:owner-id s/Str
-   :_id s/Str
-   :location s/Str
-   :name s/Str
-   })
-
-(s/defschema NetworksList
-  [Network])
-
-(s/defschema User
-  {:username s/Str
-   :email s/Str
-   :password s/Str})
+            [compojure.api.sweet                        :refer :all]))
 
 (def user-routes
   "Specify routes for the user functions"
@@ -63,6 +57,6 @@
             :header-params [authorization :- String]
             :return {:list NetworksList}
             :middleware [token-auth-mw cors-mw authenticated-mw]
-            :summary "Used to return a list of networks belonging to a user"
+            :summary "Used to return a list of networks belonging to a user."
             :description "Authorization header expecs the following format 'Token {token}'"
             (list-network-response request))))
