@@ -2,7 +2,6 @@
 (ns validis.queries.cis
   (:require [monger.collection  :as mc]
             [validis.db-handler :refer [db]]
-            [monger.conversion  :refer [from-db-object]]
             [monger.operators   :refer :all]
             [monger.util        :refer [object-id]]))
 
@@ -21,6 +20,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Getter functions for CIS ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn get-all-cis
+  "Returns all CIS"
+  []
+  (mc/find-maps db "cis"))
 
 (defn get-cis-by-id
   "Returns a CIS, if exists.

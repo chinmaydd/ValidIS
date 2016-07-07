@@ -1,3 +1,4 @@
+;; src/middleware/token_auth.clj
 (ns validis.middleware.token-auth
   (:require [buddy.auth.middleware                     :refer [wrap-authentication]]
             [validis.auth-resources.token-auth-backend :refer [token-backend]]))

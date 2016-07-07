@@ -1,3 +1,4 @@
+;; src/middlware/authenticated.clj
 (ns validis.middleware.authenticated
   (:require [buddy.auth              :refer [authenticated?]]
             [ring.util.http-response :refer [unauthorized]]))

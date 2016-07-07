@@ -6,12 +6,13 @@
 (defn insert-new-cis
   "Inserts a CIS with `name`, `address`, `api-url` and `inserter-id`"
   [inserter-id name address api-url]
-  (let [new-cis (query/insert-cis {:inserter-id inserter-id
-                                   :name name
-                                   :address address
-                                   :api-url api-url})]
+  (let [inserter-id-obj (object-id inserter-id)
+        new-cis         (query/insert-cis {:inserter-id inserter-id-obj
+                                           :name name
+                                           :address address
+                                           :api-url api-url})]
   (if (not-empty new-cis)
-    (respond/created {:id (str (:_id new-cis)) :name name})
+    (respond/created     {:id (str (:_id new-cis)) :name name})
     (respond/bad-request {:error "CIS could not be added"}))))
 
 ;; Assumed that we can have the same name

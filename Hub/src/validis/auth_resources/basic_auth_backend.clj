@@ -1,3 +1,4 @@
+;; src/auth_resources/basic_auth_backend.clj
 (ns validis.auth-resources.basic-auth-backend
   (:require [validis.queries.user          :as    query]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]

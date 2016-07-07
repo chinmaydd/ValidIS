@@ -1,11 +1,8 @@
 ;; src/route-functions/cis/add_cis.clj
 (ns validis.route-functions.cis.add-cis
-  (:require [validis.middleware.cors          :refer [cors-mw]]
-            [validis.middleware.token-auth    :refer [token-auth-mw]]
-            [validis.middleware.authenticated :refer [authenticated-mw]]
-            [validis.queries.cis              :as c-query]
-            [validis.queries.network          :as n-query]
-            [ring.util.http-response          :as respond]))
+  (:require [validis.queries.cis     :as c-query]
+            [validis.queries.network :as n-query]
+            [ring.util.http-response :as respond]))
 
 (defn add-cis-to-network
   "Adds CIS to network given `cis-id` and `network-id`"

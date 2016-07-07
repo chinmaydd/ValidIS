@@ -1,3 +1,4 @@
+;; src/middleware/basic_auth.clj
 (ns validis.middleware.basic-auth
   (:require [buddy.auth.middleware                     :refer [wrap-authentication]]
             [validis.auth-resources.basic-auth-backend :refer [basic-backend]]))
