@@ -1,3 +1,4 @@
+;; src/routes/auth.clj
 (ns validis.routes.auth
   (:require [validis.middleware.basic-auth                     :refer [basic-auth-mw]]
             [validis.middleware.authenticated                  :refer [authenticated-mw]]

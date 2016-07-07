@@ -1,3 +1,4 @@
+;; src/schemas/network.clj
 (ns validis.schemas.network
   (:require [schema.core         :as s]
             [validis.schemas.cis :refer [CIS]]))
@@ -9,7 +10,7 @@
    :owner-id s/Str
    :_id      s/Str
    :location s/Str
-   :CIS_list [CIS]
+   :CIS-list [CIS]
    })
 
 (s/defschema NetworksList

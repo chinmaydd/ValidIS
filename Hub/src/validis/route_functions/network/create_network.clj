@@ -2,15 +2,16 @@
 (ns validis.route-functions.network.create-network
   (:require [validis.queries.network    :as query]
             [buddy.hashers              :as hashers]
-            [ring.util.http-response    :as respond])
-  (:import org.bson.types.ObjectId))
+            [ring.util.http-response    :as respond]
+            [monger.util                :refer [object-id]]))
 
 (defn create-network
   "Create a network with `name`, `location` and `owner-id`."
   [name location owner-id]
   (let [new-network (query/create-new-network {:name name
                                                :location location
-                                               :owner-id (ObjectId. owner-id)})]
+                                               :owner-id (object-id owner-id)
+                                               :CIS-list []})]
     (respond/created {:name name :id (str (:_id new-network))})))
 
 (defn create-network-response

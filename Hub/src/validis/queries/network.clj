@@ -28,8 +28,8 @@
   {:name :location :owner-id :network-id}
   "
   [network-data]
-  (let [id (object-id (:network-id network-data))]
-    (mc/update-by-id db "networks" {:_id id} {$set network-data})))
+  (let [network-id (object-id (:network-id network-data))]
+    (mc/update-by-id db "networks" network-id {$set network-data})))
 
 (defn add-cis-to-network
   "Adds a CIS to a given network
@@ -39,7 +39,7 @@
   [network-data]
   (let [network-id (object-id (:network-id network-data))
         cis-id (object-id (:cis-id network-data))]
-    (mc/update-by-id db "networks" {:_id network-id} {$push {:cis cis-id}})))
+    (mc/update-by-id db "networks" network-id {$addToSet {:CIS-list cis-id}})))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Deletion queries for Network ;;
@@ -66,7 +66,7 @@
   "
   [network-data]
   (let [owner-id (object-id (:owner-id network-data))]
-  (vec (mc/find-maps db "networks" {"owner-id" owner-id}))))
+  (vec (mc/find-maps db "networks" {:owner-id owner-id}))))
 
 (defn get-network-by-id
   "Returns a network with the id, if exists.

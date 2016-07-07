@@ -4,8 +4,7 @@
             [validis.db-handler :refer [db]]
             [monger.conversion  :refer [from-db-object]]
             [monger.operators   :refer :all]
-            [monger.util        :refer [object-id]])
-  (:import org.bson.types.ObjectId))
+            [monger.util        :refer [object-id]]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Insertion queries for User ;;          
