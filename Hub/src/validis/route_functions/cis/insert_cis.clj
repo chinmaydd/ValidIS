@@ -1,7 +1,8 @@
 ;; src/route-functions/cis/insert_cis.clj
 (ns validis.route-functions.cis.insert-cis
   (:require [validis.queries.cis     :as query]
-            [ring.util.http-response :as respond]))
+            [ring.util.http-response :as respond]
+            [monger.util             :refer [object-id]]))
 
 (defn insert-new-cis
   "Inserts a CIS with `name`, `address`, `api-url` and `inserter-id`"

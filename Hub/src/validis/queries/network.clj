@@ -41,6 +41,26 @@
         cis-id (object-id (:cis-id network-data))]
     (mc/update-by-id db "networks" network-id {$addToSet {:CIS-list cis-id}})))
 
+(defn remove-cis-from-network
+  "Removes a CIS from a network
+  Network data is of the form:
+  {:cis-id :network-id}
+  "
+  [network-data]
+  (let [network-id (object-id (:network-id network-data))
+        cis-id (object-id (:cis-id network-data))]
+    (mc/update db "networks" network-id {$pull {:CIS-list cis-id}})))
+
+(defn add-user-to-network
+  "Adds a user to a network, i.e shares the network with the new user
+  Network data is of the form:
+  {:network-id :user-id}
+  "
+  [network-data]
+  (let [network-id (object-id (:network-id network-data))
+        user-id    (object-id (:user-id network-data))]
+    (mc/update-by-id "networks" network-id {$addToSet {:shared-user-list user-id}})))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Deletion queries for Network ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -96,5 +116,5 @@
   (let [network-id (object-id (:network-id network-data))
         owner-id   (:owner-id network-data)]
     (if (= (str (:owner-id (mc/find-one-as-map db "networks" {:_id network-id} [:owner-id]))) owner-id)
-      0
-      1)))
+      true 
+      false)))
