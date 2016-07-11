@@ -9,4 +9,5 @@ Hub/*.class
 Hub/.lein-*
 Hub/.nrepl-port
 Hub/profiles.clj
+Hub/doc
 TouchPoint Sensor/environment.rb
