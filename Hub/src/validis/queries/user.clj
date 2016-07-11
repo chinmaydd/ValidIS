@@ -87,6 +87,3 @@
   [user-data]
   (let [id (object-id (:id user-data))]
   (mc/find-one-as-map db "users" {:_id id})))
-
-(defn check-if-verified?
-  "Checks if a user is verified."
