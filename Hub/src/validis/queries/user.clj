@@ -41,6 +41,18 @@
         refresh-token (:refresh-token user-data)]
   (mc/update db "users" {:_id id} {$set {:refresh_token refresh-token}})))
 
+;;;;;;;;;;;;;;;;;
+;; Verify User ;;
+;;;;;;;;;;;;;;;;;
+
+(defn verify-user
+  "Verify a particular user!
+  User data is of the form:
+  {:email}
+  "
+  [user-data]
+  (mc/update db "users" {:email user-data} {$set {:verified? true}}))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Deletion queries for User ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -75,3 +87,6 @@
   [user-data]
   (let [id (object-id (:id user-data))]
   (mc/find-one-as-map db "users" {:_id id})))
+
+(defn check-if-verified?
+  "Checks if a user is verified."

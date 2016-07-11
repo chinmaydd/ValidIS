@@ -2,8 +2,7 @@
 (ns validis.db-handler
     (:require [monger.core       :as mg]
               [monger.collection :as mc]
-              [environ.core      :refer [env]])
-    (:import org.bson.types.ObjectId))
+              [environ.core      :refer [env]]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Connection variables ;;
@@ -20,12 +19,3 @@
 ;; Get a database connection to the "validis" database
 ;; The db variable can then be used from the db-handler namespace in other files.
 (def db (mg/get-db conn "validis"))
-
-;;;;;;;;;;;;;;;;;;;;;;;
-;; Utility functions ;;
-;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn convert-to-ObjectId
-  "Converts an Id string to an ObjectId."
-  [id-string]
-  (ObjectId. id-string))

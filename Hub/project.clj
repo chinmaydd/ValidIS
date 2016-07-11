@@ -7,7 +7,9 @@
                  [com.novemberain/monger     "3.0.2"]
                  [http-kit                   "2.1.18"]
                  [environ                    "1.0.3"]
-                 [buddy                      "1.0.0"]
+                 [buddy                      "1.0.0"] 
+                 [com.draines/postal         "2.0.0"]
+                 [crypto-random              "1.2.0"]
                  [ring/ring-json             "0.4.0"]]
 
   :plugins [[lein-environ "1.0.2"]

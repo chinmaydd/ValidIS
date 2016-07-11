@@ -4,7 +4,8 @@
             [validis.routes.user     :refer [user-routes]]
             [validis.routes.auth     :refer [auth-routes]]
             [validis.routes.network  :refer [network-routes]]
-            [validis.routes.cis      :refer [cis-routes]]))
+            [validis.routes.cis      :refer [cis-routes]]
+            [validis.routes.verify   :refer [verification-routes]]))
 
 (defapi app
   {:swagger
@@ -16,9 +17,11 @@
            :tags [{:name "User" :description "Create, delete and update user details"}
                   {:name "Auth" :description "View authentication details for a user!"}
                   {:name "Network" :description "Create a network of CIS!"}
-                  {:name "CIS" :description "CIS Info"}]}}}
+                  {:name "CIS" :description "CIS Info"}
+                  {:name "Verify" :description "Verification for the user!"}]}}}
 
   user-routes
   network-routes
   cis-routes
-  auth-routes)
+  auth-routes
+  verification-routes)
