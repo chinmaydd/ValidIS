@@ -13,7 +13,7 @@
 
 (defn remove-cis-response
   "Generates a response on removal of CIS from a network"
-  [request network-id cis-id]
+  [network-id cis-id]
   (let [cis-query (c-query/get-cis-by-id {:cis-id cis-id})
         cis-exists? (not-empty cis-query)]
     (cond

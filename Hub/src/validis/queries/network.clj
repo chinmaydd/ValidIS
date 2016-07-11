@@ -38,7 +38,7 @@
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
-        cis-id (object-id (:cis-id network-data))]
+        cis-id (:cis-id network-data)]
     (mc/update-by-id db "networks" network-id {$addToSet {:CIS-list cis-id}})))
 
 (defn remove-cis-from-network
@@ -48,8 +48,8 @@
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
-        cis-id (object-id (:cis-id network-data))]
-    (mc/update db "networks" network-id {$pull {:CIS-list cis-id}})))
+        cis-id (:cis-id network-data)]
+    (mc/update-by-id db "networks" network-id {$pull {:CIS-list cis-id}})))
 
 (defn add-user-to-network
   "Adds a user to a network, i.e shares the network with the new user
@@ -58,7 +58,7 @@
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
-        user-id    (object-id (:user-id network-data))]
+        user-id    (:user-id network-data)]
     (mc/update-by-id db "networks" network-id {$addToSet {:shared-user-list user-id}})))
 
 (defn remove-user-from-network
@@ -68,8 +68,8 @@
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
-        user-id (object-id (:user-id network-data))]
-    (mc/update db "networks" network-id {$pull {:shared-user-list user-id}})))
+        user-id (:user-id network-data)]
+    (mc/update-by-id db "networks" network-id {$pull {:shared-user-list user-id}})))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Deletion queries for Network ;;
@@ -95,7 +95,7 @@
   {:network-id :owner-id}
   "
   [network-data]
-  (let [owner-id (object-id (:owner-id network-data))]
+  (let [owner-id (:owner-id network-data)]
   (vec (mc/find-maps db "networks" {:owner-id owner-id}))))
 
 (defn get-network-by-id

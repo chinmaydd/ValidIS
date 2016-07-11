@@ -87,7 +87,7 @@
                  :description "Authorization header expects the following format 'Token {token}'"
                  (add-user-to-network-response network-id user-id))
 
-           (DELETE ":/network-id/user/:user-id" {:as request}
+           (DELETE "/:network-id/user/:user-id" {:as request}
                    :path-params [network-id :- String user-id :- String]
                    :header-params [authorization :- String]
                    :return {:message String}
