@@ -59,7 +59,17 @@
   [network-data]
   (let [network-id (object-id (:network-id network-data))
         user-id    (object-id (:user-id network-data))]
-    (mc/update-by-id "networks" network-id {$addToSet {:shared-user-list user-id}})))
+    (mc/update-by-id db "networks" network-id {$addToSet {:shared-user-list user-id}})))
+
+(defn remove-user-from-network
+  "Removes a user from a shared list of users for a network
+  Network data is of the form:
+  {:network-id :user-id}
+  "
+  [network-data]
+  (let [network-id (object-id (:network-id network-data))
+        user-id (object-id (:user-id network-data))]
+    (mc/update db "networks" network-id {$pull {:shared-user-list user-id}})))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Deletion queries for Network ;;
@@ -117,4 +127,16 @@
         owner-id   (:owner-id network-data)]
     (if (= (str (:owner-id (mc/find-one-as-map db "networks" {:_id network-id} [:owner-id]))) owner-id)
       true 
+      false)))
+
+(defn check-if-shared?
+  "Checks if the user is present in the shared-user-list for a network!
+  Network data is of the form:
+  {:network-id :user-id}
+  "
+  [network-data]
+  (let [network-id (object-id (:network-id network-data))
+        user-id (:user-id network-data)]
+    (if (not-empty (mc/find-one-as-map db "networks" {$and [{:_id network-id} {:shared-user-list {$in [user-id]}}]}))
+      true
       false)))

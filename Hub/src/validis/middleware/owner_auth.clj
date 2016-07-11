@@ -12,7 +12,8 @@
           network-exists? (not-empty network-query)
           owner-id        (get-in request [:identity :id])
           owner?          (query/check-if-owned-network? {:owner-id owner-id
-                                                     :network-id network-id})]
+                                                     :network-id network-id})
+          _ (println owner?)]
       (cond
         (and network-exists? owner?) (handler request)
         (not network-exists?)        (not-found {:error "Network not found!"})

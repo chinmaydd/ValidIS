@@ -7,7 +7,8 @@
 (defn add-user-to-network
   "Adds a user to the list of shared users."
   [network-id user-id]
-  (n-query/add-user-to-network {:network-id network-id :user-id user-id}))
+  (let [add-user-query (n-query/add-user-to-network {:network-id network-id :user-id user-id})]
+    (respond/ok {:message "User was successfully added!"})))
 
 (defn add-user-to-network-response
   "Generates a response on addition of a user to a network (sharing)"

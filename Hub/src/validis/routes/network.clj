@@ -11,6 +11,7 @@
             [validis.route-functions.network.add-cis        :refer [add-cis-response]]
             [validis.route-functions.network.remove-cis     :refer [remove-cis-response]]
             [validis.route-functions.network.add-user-to-network :refer [add-user-to-network-response]]
+            [validis.route-functions.network.remove-user-from-network :refer [remove-user-from-network-response]]
             ))
 
 
@@ -84,4 +85,13 @@
                  :middleware [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
                  :summary "Used to share the network with another user"
                  :description "Authorization header expects the following format 'Token {token}'"
-                 (add-user-to-network-response network-id user-id))))
+                 (add-user-to-network-response network-id user-id))
+
+           (DELETE ":/network-id/user/:user-id" {:as request}
+                   :path-params [network-id :- String user-id :- String]
+                   :header-params [authorization :- String]
+                   :return {:message String}
+                   :middleware [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
+                   :summary "Used to remove a user from shared list"
+                   :description "Authorization header expects the following format 'Token {token}'"
+                   (remove-user-from-network-response network-id user-id))))
