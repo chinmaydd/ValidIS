@@ -7,7 +7,7 @@
 (defn auth-credentials-response
   "Generate response for get requests to /api/auth. This route requires basic
    authentication. A successful request to this route will generate a new
-   refresh-token, and return {:id :username :token :refreshToken}"
+   refresh-token, and return `{:id :username :token :refreshToken}`"
   [request]
   (let [user          (:identity request)
         refresh-token (str (java.util.UUID/randomUUID))

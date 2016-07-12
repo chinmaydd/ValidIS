@@ -5,14 +5,14 @@
             [ring.util.http-response :as respond]))
 
 (defn remove-cis-from-network
-  "Removes a CIS from a network"
+  "Removes a CIS from a network. Returns a message on successful operation."
   [network-id cis-id]
   (let [upated-network (n-query/remove-cis-from-network {:cis-id cis-id
                                                          :network-id network-id})]
     (respond/ok {:message "CIS was successfully removed."})))
 
 (defn remove-cis-response
-  "Generates a response on removal of CIS from a network"
+  "Generates a response on removal of CIS from a network. We first check if the CIS we are trying to remove exists. If it does not, we return a not-found response."
   [network-id cis-id]
   (let [cis-query (c-query/get-cis-by-id {:cis-id cis-id})
         cis-exists? (not-empty cis-query)]

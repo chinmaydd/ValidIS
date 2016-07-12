@@ -8,7 +8,7 @@
             [environ.core            :refer [env]]))
 
 (defn send-verification-email
-  "Sends a verification email to the user."
+  "Sends a verification email to the user. The email body contains the API verification string."
   [email verification-string]
   (let [conn  {:host "smtp.gmail.com"
                 :user (env :email)
@@ -23,7 +23,7 @@
 
 
 (defn create-user
-  "Create user with  `email`, `username`, `password`."
+  "Create user with  `email`, `username`, `password`. The user is created in the database but not verified. A user will be verified when he posts the verification string on the `/api/verify` endpoint. Email based verification is necessary in the case of bot spamming and automated requests from a single ID suffocating the server resources(when it will be put up on the server)."
   [email username password] 
   (let [hashed-password     (hashers/encrypt password)
         verification-string (crypto/base64 5) 
@@ -37,7 +37,7 @@
 
 
 (defn create-user-response
-  "Generate response for user creation."
+  "Generate response for user creation. We check if a user with the given username/email already exist. If they do, we return a conflict response."
   [email username password]
   (let [username-query    (query/get-user-by-field {:username username})
         email-query       (query/get-user-by-field {:email email})

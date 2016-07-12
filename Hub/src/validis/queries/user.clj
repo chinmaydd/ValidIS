@@ -13,7 +13,7 @@
 (defn insert-user
   "Inserts a user into the database.
   User data is of the form:
-  {:email :username :password}
+  `{:email :username :password}`
   "
   [user-data]
   (mc/insert-and-return db "users" user-data))
@@ -25,7 +25,7 @@
 (defn update-user
   "Updates a user in the database.
   User data is of the form:
-  {:id :username :email :password}
+  `{:id :username :email :password}`
   "
   [user-data]
   (let [id (object-id (:id user-data))]
@@ -34,7 +34,7 @@
 (defn update-user-refresh-token
   "Updates the refresh token for the user.
   User data is of the form:
-  {:id :refresh-token}
+  `{:id :refresh-token}`
   "
   [user-data]
   (let [id            (object-id (:id user-data))
@@ -48,7 +48,7 @@
 (defn verify-user
   "Verify a particular user!
   User data is of the form:
-  {:email}
+  `{:email}`
   "
   [user-data]
   (mc/update db "users" {:email user-data} {$set {:verified? true}}))
@@ -61,7 +61,7 @@
 (defn delete-user
   "Deletes a user with the id.
   User data is of the form:
-  {:id}
+  `{:id}`
   "
   [user-data]
   (let [id (object-id (:id user-data))]
@@ -74,7 +74,7 @@
 (defn get-user-by-field
   "Returns a user with the field, if exists
   User data is of the form:
-  {:field &}
+  `{:field &}`
   "
   [user-data]
   (mc/find-one-as-map db "users" user-data))
@@ -82,7 +82,7 @@
 (defn get-user-by-id
   "Returns a user with the id, if exists.
   User data is of the form:
-  {:id}
+  `{:id}`
   "
   [user-data]
   (let [id (object-id (:id user-data))]

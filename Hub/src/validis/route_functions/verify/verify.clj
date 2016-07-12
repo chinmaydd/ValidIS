@@ -4,7 +4,8 @@
             [ring.util.http-response :as respond]))
 
 (defn verify-user
-  "Verifies a user based on email based verification."
+  "Verifies a user based on email based verification. The format of the verification JSON is:
+  `{:verification-string :email}`. This will make sure that all users are verified through email."
   [email verification-string]
   (let [user     (query/get-user-by-field {:email email})
         saved-vs (:verification-string user)

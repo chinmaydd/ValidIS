@@ -4,9 +4,7 @@
             [ring.util.http-response :as respond]))
 
 (defn get-all-cis
-  "Returns a list of CIS with their ids."
+  "Returns a list of all CIS with their ids. This is useful when registered users need to add a new CIS to their network but do not have the ID. Response is a list of CIS with their information and IDs."
   []
-  (let [all-cis     (query/get-all-cis)
-        updated-ids (map #(update-in % [:_id] str) all-cis)
-        updated-ins (map #(update-in % [:inserter-id] str) updated-ids)]
-    (respond/ok {:list updated-ins})))
+  (let [all-cis (query/get-all-cis)]
+    (respond/ok {:list all-cis})))

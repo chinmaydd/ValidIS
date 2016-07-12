@@ -24,13 +24,13 @@
   "Specify routes for network functions"
   (context "/api/network" []
            :tags ["Network"]
-
+           
            ;;;;;;;;;;;;;;;;;;;;;;;;;
            ;; Network CRUD routes ;;
            ;;;;;;;;;;;;;;;;;;;;;;;;;
 
            (POST "/"            {:as request}
-                 :return        {:name String :network-id String}
+                 :return        {:network-id String}
                  :header-params [authorization :- String]
                  :middleware    [token-auth-mw cors-mw authenticated-mw]
                  :body-params   [name :- String location :- String]
@@ -42,7 +42,7 @@
                   :path-params        [network-id :- String]
                   :body-params        [{name :- String ""} {location :- String ""}]
                   :header-params      [authorization :- String]
-                  :return             {:nwid String :name String}
+                  :return             {:network-id String}
                   :middleware         [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
                   :summary            "Modifies the existing network information. Requires user token and the network must belong to the user"
                   :description        "Authorization header expects the following format 'Token {token}'"

@@ -13,7 +13,7 @@
 (defn create-new-network
   "Creates a new network in the database.
   Network data is of the form:
-  {:name :location :owner-id}
+  `{:name :location :owner-id}`
   "
   [network-data]
   (mc/insert-and-return db "networks" network-data))
@@ -25,7 +25,7 @@
 (defn update-network
   "Updates a network in the database.
   Network data is of the form:
-  {:name :location :owner-id :network-id}
+  `{:name :location :owner-id :network-id}`
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))]
@@ -34,7 +34,7 @@
 (defn add-cis-to-network
   "Adds a CIS to a given network
   Network data is of the form:
-  {:cis-id :network-id}
+  `{:cis-id :network-id}`
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
@@ -44,7 +44,7 @@
 (defn remove-cis-from-network
   "Removes a CIS from a network
   Network data is of the form:
-  {:cis-id :network-id}
+  `{:cis-id :network-id}`
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
@@ -54,7 +54,7 @@
 (defn add-user-to-network
   "Adds a user to a network, i.e shares the network with the new user
   Network data is of the form:
-  {:network-id :user-id}
+  `{:network-id :user-id}`
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
@@ -64,7 +64,7 @@
 (defn remove-user-from-network
   "Removes a user from a shared list of users for a network
   Network data is of the form:
-  {:network-id :user-id}
+  `{:network-id :user-id}`
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
@@ -79,7 +79,7 @@
 (defn delete-network
   "Deletes a network from the database.
   Network data is of the form:
-  {:name :location :owner-id :network-id}
+  `{:name :location :owner-id :network-id}`
   "
   [network-data]
   (let [id (object-id (:network-id network-data))]
@@ -92,7 +92,7 @@
 (defn list-networks-for-user
   "Returns a list of networks belonging to a particular user.
   network-data is of the form:
-  {:network-id :owner-id}
+  `{:network-id :owner-id}`
   "
   [network-data]
   (let [owner-id (:owner-id network-data)]
@@ -101,7 +101,7 @@
 (defn get-network-by-id
   "Returns a network with the id, if exists.
   Network data is of the form:
-  {:network-id}
+  `{:network-id}`
   "
   [network-data]
   (let [id (object-id (:network-id network-data))]
@@ -110,7 +110,7 @@
 (defn get-network-by-name
   "Returns a network with the name, if exists.
   Network data is of the form:
-  {:name}
+  `{:name}`
   "
   [network-data]
   (let [name (:name network-data)]
@@ -120,7 +120,7 @@
   "Checks if the user-id provided matches with the owner's user-id of the network.
   Returns 0 if true, 1 otherwise.
   Network data is of the form:
-  {:network-id :owner-id}
+  `{:network-id :owner-id}`
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
@@ -132,7 +132,7 @@
 (defn check-if-shared?
   "Checks if the user is present in the shared-user-list for a network!
   Network data is of the form:
-  {:network-id :user-id}
+  `{:network-id :user-id}`
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))

@@ -5,7 +5,7 @@
             [validis.queries.user    :as query]))
 
 (defn verified?
-  "Checks if the user account is verified."
+  "Checks if the user account is verified. When the user registers he has to go through an email based verification process and verify himself at the `/api/verify` endpoint. This middleware functions checks if he is verified."
   [request]
   (let [user-id      (get-in request [:identity :id])
         user         (query/get-user-by-id {:id user-id})

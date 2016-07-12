@@ -5,20 +5,19 @@
             [monger.util             :refer [object-id]]))
 
 (defn insert-new-cis
-  "Inserts a CIS with `name`, `address`, `api-url` and `inserter-id`"
+  "Inserts a CIS with `name`, `address`, `api-url` and `inserter-id`. Response is the CIS id and the name."
   [inserter-id name address api-url]
-  (let [inserter-id-obj (object-id inserter-id)
-        new-cis         (query/insert-cis {:inserter-id inserter-id-obj
-                                           :name name
-                                           :address address
-                                           :api-url api-url})]
+  (let [new-cis (query/insert-cis {:inserter-id inserter-id
+                                   :name name
+                                   :address address
+                                   :api-url api-url})]
   (if (not-empty new-cis)
     (respond/created     {:id (str (:_id new-cis)) :name name})
     (respond/bad-request {:error "CIS could not be added"}))))
 
 ;; Assumed that we can have the same name
 (defn insert-cis-response
-  "Generates a response on insertion of a new CIS into the database."
+  "Generates a response on insertion of a new CIS into the database. Checks if we have the same CIS in the database. If that is the case, we then return a conflict response."
   [request name address api-url]
   (let [address-query   (query/get-cis-by-field {:address address})
         url-query       (query/get-cis-by-field {:api-url api-url})

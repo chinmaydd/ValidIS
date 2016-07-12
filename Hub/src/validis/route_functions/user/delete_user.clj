@@ -12,7 +12,7 @@
       (respond/not-found {:error "Userid does not exist"}))))
 
 (defn delete-user-response
-  "Generates response for user deletion."
+  "Generates response for user deletion. We check if the user is deleting himself. Identity details are taken from the request token."
   [request id]
   (let [deleting-self? (= (str id) (get-in request [:identity :id]))]
     (if deleting-self?

@@ -19,7 +19,12 @@
                   {:name "Network" :description "Create a network of CIS!"}
                   {:name "CIS" :description "CIS Info"}
                   {:name "Verify" :description "Verification for the user!"}]}}}
-
+  "Defines the `Validis` application instance. We specify the swagger configurations and the various routes for the given app. They are:
+  1. User routes
+  2. Network routes
+  3. CIS routes
+  4. Authentication routes
+  5. Verification routes"
   user-routes
   network-routes
   cis-routes
