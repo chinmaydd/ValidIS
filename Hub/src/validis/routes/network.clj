@@ -31,12 +31,12 @@
            ;;;;;;;;;;;;;;;;;;;;
            
            (GET "/:network-id" {:as request}
-                :return {:message String};; A LOT OF THINGS
-                :path-params [network-id :- String]
-                :header-params [authorization :- String]
-                :middleware    [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
-                :summary "Get the information regarding a particular network!" ;; This is real deal, bro
-                :description "Authorization header expects the following format 'Token {token}'"\
+                :return         {:message String};; A LOT OF THINGS
+                :path-params    [network-id :- String]
+                :header-params  [authorization :- String]
+                :middleware     [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
+                :summary        "Get the information regarding a particular network!" ;; This is real deal, bro
+                :description    "Authorization header expects the following format 'Token {token}'"\
                 (get-network-information network-id))
 
            ;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -48,5 +48,6 @@
   CIS-list is of the form:
   `[CIS_ID1 CIS_ID2 &]`
   "
-  [cis-list]
-  (map #(get (mc/find-one-as-map db "cis" {:_id (object-id %)} [:api-url]) :api-url) cis-list))
+  [cis-data]
+  (let [cis-list (:cis-list cis-data)]
+  (map #(get (mc/find-one-as-map db "cis" {:_id (object-id %)} [:api-url]) :api-url) cis-list)))

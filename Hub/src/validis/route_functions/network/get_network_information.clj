@@ -2,13 +2,17 @@
 (ns validis.route-functions.network.get-network-information
   (:require [validis.queries.network :as n-query]
             [validis.queries.cis     :as c-query]
-            [clj-http.client         :as client]))
+            [clj-http.client         :as client]
+            [ring.util.http-response :as respond]))
 
 (defn get-network-information
-  "Gets all the URLs we need to visit for the CISs."
+  "Gets all the information we need."
   [network-id]
-  (let [cis-list (n-query/get-all-cis {:network-id network-id})
-        url-list (c-query/get-all-urls {:cis-list cis-list})
-        get-all-responses (get (map #(client/get % {:accept :json :basic-auth ["user" "pass"]})) :data)]
-    (println get-all-responses)))
+  (let [cis-list          (n-query/get-all-cis {:network-id network-id})
+        url-list          (c-query/get-all-urls {:cis-list cis-list})
+        ;; Add authentication for the server {:basic-auth ["user" "pass"]}
+        get-all-responses (map #(client/get %) url-list)
+        ;; Temporary :status instead of data!
+        get-all-data      (map #(get % :status) get-all-responses)]
+   (respond/ok {:message "DONE!"})))
 
