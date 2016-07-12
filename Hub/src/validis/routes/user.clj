@@ -38,7 +38,7 @@
              :header-params   [authorization :- String]
              :return          {:message String}
              :middleware      [token-auth-mw cors-mw authenticated-mw]
-             :summary         "Deletes the specified user. Requires token to have `admin` auth or self ID."
+             :summary         "Deletes the specified user. Requires token to have self ID."
              :description     "Authorization header expects the following format 'Token {token}'"
              (delete-user-response request id))
 
@@ -50,7 +50,7 @@
              :header-params [authorization :- String]
              :return        User 
              :middleware    [token-auth-mw cors-mw authenticated-mw]
-             :summary       "Update some or all fields of a specified user. Requires token to have `admin` auth or self ID."
+             :summary       "Update some or all fields of a specified user. Requires token to have self ID."
              :description   "Authorization header expects the following format 'Token {token}'"
              (modify-user-response request id username password email))
 
