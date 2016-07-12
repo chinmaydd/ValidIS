@@ -42,3 +42,11 @@
   "
   [cis-data]
   (mc/find-one-as-map db "cis" cis-data))
+
+(defn get-all-urls
+  "Returns a list of all urls for the given CIS.
+  CIS-list is of the form:
+  `[CIS_ID1 CIS_ID2 &]`
+  "
+  [cis-list]
+  (map #(get (mc/find-one-as-map db "cis" {:_id (object-id %)} [:api-url]) :api-url) cis-list))

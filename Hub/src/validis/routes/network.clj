@@ -15,6 +15,7 @@
     [validis.route-functions.network.remove-cis               :refer [remove-cis-response]]
     [validis.route-functions.network.add-user-to-network      :refer [add-user-to-network-response]]
     [validis.route-functions.network.remove-user-from-network :refer [remove-user-from-network-response]]
+    [validis.route-functions.network.get-network-information  :refer [get-network-information]]
 
     ;; Utility libs
     [compojure.api.sweet                                      :refer :all]))
@@ -24,7 +25,20 @@
   "Specify routes for network functions"
   (context "/api/network" []
            :tags ["Network"]
+          
+           ;;;;;;;;;;;;;;;;;;;;
+           ;; Network data ! ;;
+           ;;;;;;;;;;;;;;;;;;;;
            
+           (GET "/:network-id" {:as request}
+                :return {:message String};; A LOT OF THINGS
+                :path-params [network-id :- String]
+                :header-params [authorization :- String]
+                :middleware    [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
+                :summary "Get the information regarding a particular network!" ;; This is real deal, bro
+                :description "Authorization header expects the following format 'Token {token}'"\
+                (get-network-information network-id))
+
            ;;;;;;;;;;;;;;;;;;;;;;;;;
            ;; Network CRUD routes ;;
            ;;;;;;;;;;;;;;;;;;;;;;;;;

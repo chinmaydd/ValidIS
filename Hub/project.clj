@@ -6,6 +6,7 @@
                  [metosin/compojure-api      "1.1.1"]
                  [com.novemberain/monger     "3.0.2"]
                  [http-kit                   "2.1.18"]
+                 [clj-http                   "2.2.0"]
                  [environ                    "1.0.3"]
                  [buddy                      "1.0.0"] 
                  [com.draines/postal         "2.0.0"]

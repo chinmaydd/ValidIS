@@ -96,7 +96,7 @@
   "
   [network-data]
   (let [owner-id (:owner-id network-data)]
-  (vec (mc/find-maps db "networks" {:owner-id owner-id}))))
+    (vec (mc/find-maps db "networks" {:owner-id owner-id}))))
 
 (defn get-network-by-id
   "Returns a network with the id, if exists.
@@ -140,3 +140,11 @@
     (if (not-empty (mc/find-one-as-map db "networks" {$and [{:_id network-id} {:shared-user-list {$in [user-id]}}]}))
       true
       false)))
+
+(defn get-all-cis
+  "Return a list of all CIS in the network.
+  Network data is of the form:
+  `{:network-id}`"
+  [network-data]
+  (let [network-id (object-id (:network-id network-data))]
+    (get (mc/find-one-as-map db "networks" {:_id network-id} [:CIS-list]) :CIS-list)))
