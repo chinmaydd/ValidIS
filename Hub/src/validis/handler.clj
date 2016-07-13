@@ -1,11 +1,12 @@
 (ns validis.handler
-  (:require [compojure.api.sweet     :refer :all]
+  "App request handler!"
+  (:require [compojure.api.sweet :refer :all]
             [ring.util.http-response :refer :all]
-            [validis.routes.user     :refer [user-routes]]
-            [validis.routes.auth     :refer [auth-routes]]
-            [validis.routes.network  :refer [network-routes]]
-            [validis.routes.cis      :refer [cis-routes]]
-            [validis.routes.verify   :refer [verification-routes]]))
+            [validis.routes.user :refer [user-routes]]
+            [validis.routes.auth :refer [auth-routes]]
+            [validis.routes.network :refer [network-routes]]
+            [validis.routes.cis :refer [cis-routes]]
+            [validis.routes.verify :refer [verification-routes]]))
 
 (defapi app
   {:swagger

@@ -1,4 +1,5 @@
-(ns validis.print-handler)
+(ns validis.print-handler
+  "Pretty printing middleware function.")
 
 (defn print-handler
   "Handy middleware for (pretty) printing incoming requests. Used the clojure library `pprint` for all incoming requests."

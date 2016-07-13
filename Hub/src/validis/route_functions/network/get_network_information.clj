@@ -1,8 +1,9 @@
 ;; src/route-functions/network/get-network-information.clj
 (ns validis.route-functions.network.get-network-information
+  "The real deal."
   (:require [validis.queries.network :as n-query]
-            [validis.queries.cis     :as c-query]
-            [clj-http.client         :as client]
+            [validis.queries.cis :as c-query]
+            [clj-http.client :as client]
             [ring.util.http-response :as respond]))
 
 (defn get-network-information

@@ -1,10 +1,11 @@
 ;; src/queries/user.clj
 (ns validis.queries.user
-  (:require [monger.collection  :as    mc]
+  "Queries for the user document store."
+  (:require [monger.collection :as mc]
             [validis.db-handler :refer [db]]
-            [monger.conversion  :refer [from-db-object]]
-            [monger.operators   :refer :all]
-            [monger.util        :refer [object-id]]))
+            [monger.conversion :refer [from-db-object]]
+            [monger.operators :refer :all]
+            [monger.util :refer [object-id]]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Insertion queries for User ;;

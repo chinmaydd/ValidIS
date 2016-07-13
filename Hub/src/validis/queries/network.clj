@@ -1,10 +1,11 @@
 ;; src/queries/network.clj
 (ns validis.queries.network
-  (:require [monger.collection  :as mc]
+  "Queries for the network document store."
+  (:require [monger.collection :as mc]
             [validis.db-handler :refer [db]]
-            [monger.conversion  :refer [from-db-object]]
-            [monger.operators   :refer :all]
-            [monger.util        :refer [object-id]]))
+            [monger.conversion :refer [from-db-object]]
+            [monger.operators :refer :all]
+            [monger.util :refer [object-id]]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Create a new network ;;

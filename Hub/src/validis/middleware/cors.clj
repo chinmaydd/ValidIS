@@ -1,5 +1,6 @@
 ;; src/middleware/cors.clj
-(ns validis.middleware.cors)
+(ns validis.middleware.cors
+  "Cross-Origin request policiy")
 
 (defn cors-mw
   "Cross-origin Resource Sharing (CORS) middleware. Allow requests from all

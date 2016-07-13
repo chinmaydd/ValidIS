@@ -1,5 +1,6 @@
 ;; src/middleware/authenticated.clj
 (ns validis.middleware.authenticated
+  "Contains functions for checking if the user is verified AND his token is authenticated!"
   (:require [buddy.auth              :refer [authenticated?]]
             [ring.util.http-response :refer [unauthorized]]
             [validis.queries.user    :as query]))

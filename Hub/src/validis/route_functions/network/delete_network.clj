@@ -1,5 +1,6 @@
 ;; src/route-functions/network/delete-network.clj
 (ns validis.route-functions.network.delete-network
+  "Contains functions to delete a network."
   (:require [validis.queries.network :as query]
             [ring.util.http-response :as respond]))
 

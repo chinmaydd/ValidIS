@@ -1,6 +1,7 @@
 ;; src/route-functions/network/add_cis.clj
 (ns validis.route-functions.network.add-cis
-  (:require [validis.queries.cis     :as c-query]
+  "Contains function to add a new CIS to a network document."
+  (:require [validis.queries.cis :as c-query]
             [validis.queries.network :as n-query]
             [ring.util.http-response :as respond]))
 

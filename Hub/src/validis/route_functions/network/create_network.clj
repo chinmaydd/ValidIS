@@ -1,9 +1,10 @@
 ;; src/route-functions/network/create-network.clj
 (ns validis.route-functions.network.create-network
-  (:require [validis.queries.network    :as query]
-            [buddy.hashers              :as hashers]
-            [ring.util.http-response    :as respond]
-            [monger.util                :refer [object-id]]))
+  "Contains functions to add a new network."
+  (:require [validis.queries.network :as query]
+            [buddy.hashers :as hashers]
+            [ring.util.http-response :as respond]
+            [monger.util :refer [object-id]]))
 
 (defn create-network
   "Create a network with `name`, `location` and `owner-id`. Response is the id if the operation was successful."

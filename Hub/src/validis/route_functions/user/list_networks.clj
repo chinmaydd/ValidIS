@@ -1,5 +1,6 @@
 ;; src/route-functions/user/list-networks.clj
 (ns validis.route-functions.user.list-networks
+  "List all user networks."
   (:require [validis.queries.network :as query]
             [ring.util.http-response :as respond]))
 

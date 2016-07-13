@@ -1,8 +1,9 @@
 ;; src/db_handler.clj
 (ns validis.db-handler
-  (:require [monger.core       :as mg]
+  "DB handler variables."
+  (:require [monger.core :as mg]
             [monger.collection :as mc]
-            [environ.core      :refer [env]]))
+            [environ.core :refer [env]]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Connection variables ;;

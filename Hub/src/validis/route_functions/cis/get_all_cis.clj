@@ -1,6 +1,7 @@
 ;; src/route-functions/cis/get_all_cis.clj
 (ns validis.route-functions.cis.get-all-cis
-  (:require [validis.queries.cis     :as query]
+  "Contains function to return all CIS from db."
+  (:require [validis.queries.cis :as query]
             [ring.util.http-response :as respond]))
 
 (defn get-all-cis

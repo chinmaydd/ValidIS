@@ -1,7 +1,8 @@
 ;; src/general_functions/user/create_token.clj
 (ns validis.general-functions.user.create-token
-  (:require [environ.core   :refer [env]]
-            [clj-time.core  :as time]
+  "Contains functions for creation of auth-token."
+  (:require [environ.core :refer [env]]
+            [clj-time.core :as time]
             [buddy.sign.jwt :as jwt]))
 
 (defn create-token

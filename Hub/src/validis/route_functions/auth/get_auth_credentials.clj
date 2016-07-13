@@ -1,8 +1,9 @@
 ;; src/route-functions/auth/get-auth-credentials.clj
 (ns validis.route-functions.auth.get-auth-credentials
+  "Contains function for responding to a request for generating an auth-token."
   (:require [validis.general-functions.user.create-token :refer [create-token]]
-            [validis.queries.user                        :as query]
-            [ring.util.http-response                     :as respond]))
+            [validis.queries.user :as query]
+            [ring.util.http-response :as respond]))
 
 (defn auth-credentials-response
   "Generate response for get requests to /api/auth. This route requires basic

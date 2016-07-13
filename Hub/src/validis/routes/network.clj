@@ -1,5 +1,6 @@
 ;; src/routes/network.clj
 (ns validis.routes.network
+  "Routes for network."
   (:require
     ;; Middleware inclusions
    [validis.middleware.cors :refer [cors-mw]]

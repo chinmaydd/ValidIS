@@ -1,7 +1,8 @@
 ;; src/route-functions/user/modify-user.clj
 (ns validis.route-functions.user.modify-user
-  (:require [validis.queries.user    :as query]
-            [buddy.hashers           :as hashers]
+  "Contains functions to modify user."
+  (:require [validis.queries.user :as query]
+            [buddy.hashers :as hashers]
             [ring.util.http-response :as respond]))
 
 (defn modify-user

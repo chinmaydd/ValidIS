@@ -1,6 +1,7 @@
 ;; src/route-functions/user/delete-user.clj
 (ns validis.route-functions.user.delete-user
-  (:require [validis.queries.user    :as query]
+  "Contains functions to delete a user account."
+  (:require [validis.queries.user :as query]
             [ring.util.http-response :as respond]))
 
 (defn delete-user

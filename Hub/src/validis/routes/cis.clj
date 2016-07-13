@@ -1,21 +1,22 @@
 ;; src/routes/cis.clj
 (ns validis.routes.cis
+  "Routes for CIS."
   (:require
-            ;; Middleware inclusions
-   [validis.middleware.cors                        :refer [cors-mw]]
-   [validis.middleware.token-auth                  :refer [token-auth-mw]]
-   [validis.middleware.authenticated               :refer [authenticated-mw]]
-   [validis.print-handler                          :refer [print-handler]]
+   ;; Middleware inclusions
+   [validis.middleware.cors :refer [cors-mw]]
+   [validis.middleware.token-auth :refer [token-auth-mw]]
+   [validis.middleware.authenticated :refer [authenticated-mw]]
+   [validis.print-handler :refer [print-handler]]
 
-            ;; Route function inclusions
-   [validis.route-functions.cis.insert-cis         :refer [insert-cis-response]]
-   [validis.route-functions.cis.get-all-cis        :refer [get-all-cis]]
+   ;; Route function inclusions
+   [validis.route-functions.cis.insert-cis :refer [insert-cis-response]]
+   [validis.route-functions.cis.get-all-cis :refer [get-all-cis]]
 
-            ;; Schema inclusions
-   [validis.schemas.cis                            :refer [CISList]]
+   ;; Schema inclusions
+   [validis.schemas.cis :refer [CISList]]
 
-            ;; Utility libs
-   [compojure.api.sweet                            :refer :all]))
+   ;; Utility libs
+   [compojure.api.sweet :refer :all]))
 
 (def cis-routes
   "Specify routes for cis functions"

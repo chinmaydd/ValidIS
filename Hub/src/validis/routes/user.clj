@@ -1,25 +1,26 @@
 ;; src/routes/user.clj
 (ns validis.routes.user
+  "Routes for user."
   (:require
-            ;; Middleware inclusions
-   [validis.middleware.cors                    :refer [cors-mw]]
-   [validis.middleware.token-auth              :refer [token-auth-mw]]
-   [validis.middleware.authenticated           :refer [authenticated-mw]]
+   ;; Middleware inclusions
+   [validis.middleware.cors :refer [cors-mw]]
+   [validis.middleware.token-auth :refer [token-auth-mw]]
+   [validis.middleware.authenticated :refer [authenticated-mw]]
 
-            ;; Route function inclusions
-   [validis.route-functions.user.create-user   :refer [create-user-response]]
-   [validis.route-functions.user.delete-user   :refer [delete-user-response]]
-   [validis.route-functions.user.modify-user   :refer [modify-user-response]]
+   ;; Route function inclusions
+   [validis.route-functions.user.create-user :refer [create-user-response]]
+   [validis.route-functions.user.delete-user :refer [delete-user-response]]
+   [validis.route-functions.user.modify-user :refer [modify-user-response]]
    [validis.route-functions.user.list-networks :refer [list-network-response]]
 
-            ;; Schema inclusions
-   [validis.schemas.user                       :refer [User]]
-   [validis.schemas.network                    :refer [NetworksList]]
+   ;; Schema inclusions
+   [validis.schemas.user :refer [User]]
+   [validis.schemas.network :refer [NetworksList]]
 
-            ;; Utility libs
-   [ring.swagger.json-schema                   :as json-schema]
-   [schema.core                                :as s]
-   [compojure.api.sweet                        :refer :all]))
+   ;; Utility libs
+   [ring.swagger.json-schema :as json-schema]
+   [schema.core :as s]
+   [compojure.api.sweet :refer :all]))
 
 (def user-routes
   "Specify routes for the user functions"

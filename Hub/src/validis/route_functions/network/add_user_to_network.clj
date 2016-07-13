@@ -1,6 +1,7 @@
 ;; src/route-functions/network/add_user_to_network.clj
 (ns validis.route-functions.network.add-user-to-network
-  (:require [validis.queries.user    :as u-query]
+  "Contains functions to add a new user to the shared list of users in the network document."
+  (:require [validis.queries.user :as u-query]
             [validis.queries.network :as n-query]
             [ring.util.http-response :as respond]))
 

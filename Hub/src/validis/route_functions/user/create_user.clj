@@ -1,11 +1,12 @@
 ;; src/route-functions/user/create-user.clj
 (ns validis.route-functions.user.create-user
-  (:require [validis.queries.user    :as query]
-            [buddy.hashers           :as hashers]
+  "Contains functions to create a new user account."
+  (:require [validis.queries.user :as query]
+            [buddy.hashers :as hashers]
             [ring.util.http-response :as respond]
-            [postal.core             :as mail]
-            [crypto.random           :as crypto]
-            [environ.core            :refer [env]]))
+            [postal.core :as mail]
+            [crypto.random :as crypto]
+            [environ.core :refer [env]]))
 
 (defn send-verification-email
   "Sends a verification email to the user. The email body contains the API verification string."

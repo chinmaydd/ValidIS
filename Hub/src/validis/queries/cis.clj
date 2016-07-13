@@ -1,9 +1,10 @@
 ;; src/queries/cis.clj
 (ns validis.queries.cis
-  (:require [monger.collection  :as mc]
+  "Queries for the CIS document store."
+  (:require [monger.collection :as mc]
             [validis.db-handler :refer [db]]
-            [monger.operators   :refer :all]
-            [monger.util        :refer [object-id]]))
+            [monger.operators :refer :all]
+            [monger.util :refer [object-id]]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Insert functions for CIS ;;

@@ -1,6 +1,7 @@
 ;; src/route-functions/verify/verify.clj
 (ns validis.route-functions.verify.verify
-  (:require [validis.queries.user    :as query]
+  "Email based user verification."
+  (:require [validis.queries.user :as query]
             [ring.util.http-response :as respond]))
 
 (defn verify-user

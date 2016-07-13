@@ -1,5 +1,6 @@
 ;; src/route-functions/network/remove_cis.clj
 (ns validis.route-functions.network.remove-cis
+  "Contains functions to remove a cis from a network."
   (:require [validis.queries.cis :as c-query]
             [validis.queries.network :as n-query]
             [ring.util.http-response :as respond]))
