@@ -6,9 +6,8 @@
 
 (defn insert-new-cis
   "Inserts a CIS with `name`, `address`, `api-url` and `inserter-id`. Response is the CIS id and the name."
-  [inserter-id name address api-url]
-  (let [new-cis (query/insert-cis {:inserter-id inserter-id
-                                   :name name
+  [name address api-url]
+  (let [new-cis (query/insert-cis {:name name
                                    :address address
                                    :api-url api-url})]
   (if (not-empty new-cis)
@@ -22,9 +21,8 @@
   (let [address-query   (query/get-cis-by-field {:address address})
         url-query       (query/get-cis-by-field {:api-url api-url})
         address-exists? (not-empty address-query)
-        url-exists?     (not-empty url-query)
-        inserter-id     (get-in request [:identity :id])]
+        url-exists?     (not-empty url-query)]
     (cond
       address-exists? (respond/conflict {:error "CIS with the same address already exists in the database. Add it to your own network using it's id"})
       url-exists?     (respond/conflict {:error "CIS with the same api-url already exists in the database. Use a different url for your own CIS"})
-      :else           (insert-new-cis inserter-id name address api-url))))
+      :else           (insert-new-cis name address api-url))))
