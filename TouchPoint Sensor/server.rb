@@ -2,6 +2,7 @@ require 'sinatra'
 require 'docdsl'
 require 'json'
 require 'mysql2'
+require 'sinatra/cross_origin'
 require 'pry'
 require './environment'
 
@@ -10,11 +11,21 @@ require './environment'
 @db_pass = ENV['db_pass']
 @db_name = ENV['db_name']
 
+configure do
+    enable :cross_origin
+end
+
 def connect_to_db
     client = Mysql2::Client.new(:host => @db_host, :username => @db_user, :password => @db_pass, :database => @db_name)
 end
 
 def collect_data
+    {:message => "OMG_WHAT"}
+end
+
+get '/api' do
+    content_type :json
+    collect_data.to_json
 end
 
 # We will be coding up a simple web server in Sinatra which accepts requests to an API endpoint for
@@ -24,4 +35,3 @@ end
 get '/info' do
     return "Hello, world"
 end
-

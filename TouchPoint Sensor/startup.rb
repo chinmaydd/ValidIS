@@ -87,7 +87,7 @@ def port
 end
 
 def get_api_url
-    Socket::getaddrinfo(Socket.gethostname,"echo",Socket::AF_INET)[0][3] + ":" + port.to_s + "/api/"
+    "http://" + Socket::getaddrinfo(Socket.gethostname,"echo",Socket::AF_INET)[0][3] + ":" + port.to_s + "/api"
 end
 
 def get_cis_data

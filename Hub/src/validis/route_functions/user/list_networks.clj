@@ -7,9 +7,8 @@
   "Returns a list of networks belonging to a user along with their ids."
   [owner-id]
   (let [networks-list (query/list-networks-for-user {:owner-id owner-id})
-        updated-owner-id (map #(update-in % [:owner-id] str) networks-list)
         updated-network-id (map #(update-in % [:_id] str)
-                                updated-owner-id)]
+                                networks-list)]
     (respond/ok {:list updated-network-id})))
 
 (defn list-network-response

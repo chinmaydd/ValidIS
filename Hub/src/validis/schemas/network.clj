@@ -10,7 +10,8 @@
    :owner-id s/Str
    :_id      s/Str
    :location s/Str
-   :CIS-list [CIS]
+   :CIS-list [s/Str]
+   :shared-user-list [s/Str]
    })
 
 (s/defschema NetworksList

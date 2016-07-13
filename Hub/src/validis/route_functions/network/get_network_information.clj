@@ -13,6 +13,6 @@
         ;; Add authentication for the server {:basic-auth ["user" "pass"]}
         get-all-responses (map #(client/get %) url-list)
         ;; Temporary :status instead of data!
-        get-all-data      (map #(get % :status) get-all-responses)]
-   (respond/ok {:message "DONE!"})))
-
+        get-all-data      (map #(get % :body) get-all-responses)
+        _ (println get-all-data)]
+   (respond/ok {:message "OLAA"})))
