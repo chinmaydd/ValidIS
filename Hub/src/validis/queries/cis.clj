@@ -32,7 +32,7 @@
   `{:cis-id}`
   "
   [cis-data]
-  (let [id (object-id (:cis-id cis-data))] 
+  (let [id (object-id (:cis-id cis-data))]
     (mc/find-one-as-map db "cis" {:_id id})))
 
 (defn get-cis-by-field
@@ -50,4 +50,4 @@
   "
   [cis-data]
   (let [cis-list (:cis-list cis-data)]
-  (map #(get (mc/find-one-as-map db "cis" {:_id (object-id %)} [:api-url]) :api-url) cis-list)))
+    (map #(get (mc/find-one-as-map db "cis" {:_id (object-id %)} [:api-url]) :api-url) cis-list)))

@@ -6,11 +6,10 @@
 
 (def verification-routes
   "Specify routes for user verification"
-  (context "api/verify" []
-           (POST "/" {:as request}
-                 :tags ["Verify"]
-                 :return {:message String}
-                 :body-params [email :- String verification-string :- String]
-                 :middleware [cors-mw]
-                 :summary "Verifies the user based on the given user email id."
-                 (verify-user email verification-string))))
+  (context "/api/verify" []
+    (POST "/" {:as request}
+      :return {:message String}
+      :body-params [email :- String verification-string :- String]
+      :middleware [cors-mw]
+      :summary "Verifies the user based on the given user email id."
+      (verify-user email verification-string))))

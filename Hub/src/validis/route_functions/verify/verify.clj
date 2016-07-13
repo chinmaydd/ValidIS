@@ -12,6 +12,6 @@
         success? (= verification-string saved-vs)]
     (if success?
       (do
-          (respond/ok "Your email was verified. You can now use all the services!")
-          (query/verify-user {:email email}))
+        (respond/ok "Your email was verified. You can now use all the services!")
+        (query/verify-user {:email email}))
       (respond/bad-request {:error "You verification string did not match. Please try again."}))))

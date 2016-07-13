@@ -15,4 +15,4 @@
         ;; Temporary :status instead of data!
         get-all-data      (map #(get % :body) get-all-responses)
         _ (println get-all-data)]
-   (respond/ok {:message "OLAA"})))
+    (respond/ok {:message "OLAA"})))

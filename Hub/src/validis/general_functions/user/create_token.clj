@@ -1,8 +1,8 @@
 ;; src/general_functions/user/create_token.clj
 (ns validis.general-functions.user.create-token
-   (:require [environ.core   :refer [env]]
-             [clj-time.core  :as time]
-             [buddy.sign.jwt :as jwt]))
+  (:require [environ.core   :refer [env]]
+            [clj-time.core  :as time]
+            [buddy.sign.jwt :as jwt]))
 
 (defn create-token
   "Create a signed json web token. The token contents are; username, email, id,

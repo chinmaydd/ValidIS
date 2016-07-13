@@ -1,7 +1,7 @@
 ;; src/route-functions/network/modify-network.clj
 (ns validis.route-functions.network.modify-network
   (:require [validis.queries.network :as query]
-            [ring.util.http-response :as respond])) 
+            [ring.util.http-response :as respond]))
 
 (defn modify-network
   "Modify network information. If the new information is not provided, we use the already existing one for updating the database document."
@@ -19,5 +19,6 @@
 
 (defn modify-network-response
   "Generates a response on modification of a network"
-  [network-id name location owner-id]
-  (modify-network network-id name location owner-id))
+  [request network-id name location]
+  (let [owner-id (get-in request [:identity :id])]
+    (modify-network network-id name location owner-id)))

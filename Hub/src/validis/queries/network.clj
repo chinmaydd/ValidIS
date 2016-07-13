@@ -126,7 +126,7 @@
   (let [network-id (object-id (:network-id network-data))
         owner-id   (:owner-id network-data)]
     (if (= (str (:owner-id (mc/find-one-as-map db "networks" {:_id network-id} [:owner-id]))) owner-id)
-      true 
+      true
       false)))
 
 (defn check-if-shared?

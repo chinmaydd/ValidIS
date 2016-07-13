@@ -17,8 +17,8 @@
    authenticated a 401 not authorized response will be returned"
   [handler]
   (fn [request]
-   (if (authenticated? request)
-    (if (verified? request)
-     (handler request)
-     (unauthorized {:error "Please verify your account!"}))
-    (unauthorized {:error "Not authorized."})))) 
+    (if (authenticated? request)
+      (if (verified? request)
+        (handler request)
+        (unauthorized {:error "Please verify your account!"}))
+      (unauthorized {:error "Not authorized."}))))

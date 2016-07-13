@@ -10,9 +10,9 @@
   (let [new-cis (query/insert-cis {:name name
                                    :address address
                                    :api-url api-url})]
-  (if (not-empty new-cis)
-    (respond/created     {:id (str (:_id new-cis)) :name name})
-    (respond/bad-request {:error "CIS could not be added"}))))
+    (if (not-empty new-cis)
+      (respond/created     {:id (str (:_id new-cis)) :name name})
+      (respond/bad-request {:error "CIS could not be added"}))))
 
 ;; Assumed that we can have the same name
 (defn insert-cis-response

@@ -11,8 +11,7 @@
    :_id      s/Str
    :location s/Str
    :CIS-list [s/Str]
-   :shared-user-list [s/Str]
-   })
+   :shared-user-list [s/Str]})
 
 (s/defschema NetworksList
   [Network])

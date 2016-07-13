@@ -7,7 +7,7 @@
             [monger.util        :refer [object-id]]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Insertion queries for User ;;          
+;; Insertion queries for User ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn insert-user
@@ -29,7 +29,7 @@
   "
   [user-data]
   (let [id (object-id (:id user-data))]
-  (mc/update-by-id db "users" {:_id id} {$set user-data})))
+    (mc/update-by-id db "users" {:_id id} {$set user-data})))
 
 (defn update-user-refresh-token
   "Updates the refresh token for the user.
@@ -39,7 +39,7 @@
   [user-data]
   (let [id            (object-id (:id user-data))
         refresh-token (:refresh-token user-data)]
-  (mc/update db "users" {:_id id} {$set {:refresh_token refresh-token}})))
+    (mc/update db "users" {:_id id} {$set {:refresh_token refresh-token}})))
 
 ;;;;;;;;;;;;;;;;;
 ;; Verify User ;;
@@ -65,7 +65,7 @@
   "
   [user-data]
   (let [id (object-id (:id user-data))]
-  (.getN (mc/remove-by-id db "users" id))))
+    (.getN (mc/remove-by-id db "users" id))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Getter functions for User ;;
@@ -86,4 +86,4 @@
   "
   [user-data]
   (let [id (object-id (:id user-data))]
-  (mc/find-one-as-map db "users" {:_id id})))
+    (mc/find-one-as-map db "users" {:_id id})))
