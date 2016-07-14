@@ -72,6 +72,11 @@
 ;; Getter functions for User ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defn get-all-users
+  "Returns all the users in the db"
+  []
+  (mc/find-maps db "users"))
+
 (defn get-user-by-field
   "Returns a user with the field, if exists
   User data is of the form:

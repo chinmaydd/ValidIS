@@ -22,6 +22,7 @@
                 :body body-string}]
     (mail/send-message conn config)))
 
+;; Temporarily disabled email based verification for testing purposes.
 (defn create-user
   "Create user with  `email`, `username`, `password`. The user is created in the database but not verified. A user will be verified when he posts the verification string on the `/api/verify` endpoint. Email based verification is necessary in the case of bot spamming and automated requests from a single ID suffocating the server resources(when it will be put up on the server)."
   [email username password]
@@ -30,9 +31,11 @@
         new-user            (query/insert-user {:email email
                                                 :username username
                                                 :password hashed-password
-                                                :verified? false
+                                                ; :verified? false
+                                                :verified? true
                                                 :verification-string verification-string})
-        _                   (send-verification-email email verification-string)]
+        ;_                   (send-verification-email email verification-string)
+        ]
     (respond/ok {:message "A verification email has been sent. Please verify yourself at /api/verify."})))
 
 (defn create-user-response

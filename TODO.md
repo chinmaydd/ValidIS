@@ -4,22 +4,10 @@
 
 [3] F: Add feature for password reset.
 
-[4] Check password size and details.
+[4] Finish TPS
 
-[5] F: Add email based verification for creation of accounts.
+[5] Develop frontend.
 
-[6] Finish TPS
+[6] Aggregate data and send it for visualization.
 
-[7] Develop frontend.
-
-[8] Aggregate data and send it for visualization.
-
-[9] Find more TPS
-
-[10] Moar TESTS!
-
-[11] Add CIS addition/deletion functionality
-
-[12] Access control for the network data.
-
-[13] Setup an install script on the TPS so that the particular CIS is added to the database.
+[7] Find more TPS
