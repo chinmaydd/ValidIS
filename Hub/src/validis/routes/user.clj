@@ -45,7 +45,8 @@
 
     (PATCH  "/:id"   {:as request}
       :path-params   [id :- String]
-      :body-params   [username :- String password :- String]
+      :body-params   [{username :- String ""}
+                      {password :- String ""}]
       :header-params [authorization :- String]
       :return        {:message String} 
       :middleware    [token-auth-mw cors-mw authenticated-mw]

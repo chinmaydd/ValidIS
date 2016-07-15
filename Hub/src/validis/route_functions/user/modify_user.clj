@@ -9,7 +9,7 @@
   "Modify user information. If no new information is provided, we use the already exsiting one for updating the database document."
   [current-user-info id username password]
   (let [new-username  (if (empty? username) (:username current-user-info) username)
-        new-password  (if (empty? password) (:password current-user-info) (hashers/encrypt password))
+        new-password  (if (empty? password) (:password current-user-info) (hashers/derive password))
         new-user-info (query/update-user {:id id
                                           :username new-username
                                           :password new-password})]
@@ -22,7 +22,8 @@
         modifying-self?   (= (str id) (get-in request [:identity :id]))
         new-user-query    (query/get-user-by-field {:username username})
         new-user-exists?  (not-empty new-user-query)
-        modify?           (and modifying-self? (not-empty current-user-info))]
+        modify?           (and modifying-self? (not new-user-exists?))]
     (cond
       modify?                    (modify-user current-user-info id username password)
-      (not modifying-self?)      (respond/unauthorized {:error "Not authorized"}))))
+      (not modifying-self?)      (respond/unauthorized {:error "Not authorized"})
+      new-user-exists?           (respond/conflict {:error "User with the same username already exists!"}))))
