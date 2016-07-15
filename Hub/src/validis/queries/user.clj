@@ -30,7 +30,7 @@
   "
   [user-data]
   (let [id (object-id (:id user-data))]
-    (mc/update-by-id db "users" {:_id id} {$set user-data})))
+    (mc/update db "users" {:_id id} {$set (dissoc user-data :id)})))
 
 (defn update-user-refresh-token
   "Updates the refresh token for the user.
@@ -67,6 +67,11 @@
   [user-data]
   (let [id (object-id (:id user-data))]
     (.getN (mc/remove-by-id db "users" id))))
+
+(defn empty-user-database
+  "Removes all documents in the user database."
+  []
+  (mc/remove db "users"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Getter functions for User ;;

@@ -7,24 +7,22 @@
 
 (defn modify-user
   "Modify user information. If no new information is provided, we use the already exsiting one for updating the database document."
-  [current-user-info username password email]
-  (let [new-email     (if (empty? email)    (str (:email current-user-info)) email)
-        new-username  (if (empty? username) (str (:username current-user-info)) username)
+  [current-user-info id username password]
+  (let [new-username  (if (empty? username) (:username current-user-info) username)
         new-password  (if (empty? password) (:password current-user-info) (hashers/encrypt password))
-        new-user-info (query/update-user  {:id (str (:_id current-user-info))
-                                           :email new-email
-                                           :username new-username
-                                           :password new-password
-                                           :refresh_token (:refresh_token current-user-info)})]
-    (respond/ok {:id (str (:_id current-user-info)) :email new-email :username new-username})))
+        new-user-info (query/update-user {:id id
+                                          :username new-username
+                                          :password new-password})]
+    (respond/ok {:message (format "User id %s was successfully modified." id)})))
 
 (defn modify-user-response
   "Generates a user response for modification of his own details."
-  [request id username password email]
+  [request id username password]
   (let [current-user-info (query/get-user-by-id {:id id})
         modifying-self?   (= (str id) (get-in request [:identity :id]))
+        new-user-query    (query/get-user-by-field {:username username})
+        new-user-exists?  (not-empty new-user-query)
         modify?           (and modifying-self? (not-empty current-user-info))]
     (cond
-      modify?                    (modify-user current-user-info username password email)
-      (not modifying-self?)      (respond/unauthorized {:error "Not authorized"})
-      (empty? current-user-info) (respond/not-found {:error "Userid does not exist"}))))
+      modify?                    (modify-user current-user-info id username password)
+      (not modifying-self?)      (respond/unauthorized {:error "Not authorized"}))))

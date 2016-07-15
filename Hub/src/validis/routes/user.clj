@@ -27,14 +27,14 @@
   (context "/api/user" []
     :tags ["User"]
 
-    (POST "/"           {:as request}
-      :return       {:username String}
+    (POST "/"       {:as request}
+      :return       {:message String}
       :middleware   [cors-mw]
       :body-params  [email :- String username :- String password :- String]
       :summary      "Create a new user with provided username, email and password."
       (create-user-response email username password))
 
-    (DELETE "/:id"            {:as request}
+    (DELETE "/:id"     {:as request}
       :path-params     [id :- String]
       :header-params   [authorization :- String]
       :return          {:message String}
@@ -43,17 +43,15 @@
       :description     "Authorization header expects the following format 'Token {token}'"
       (delete-user-response request id))
 
-    (PATCH  "/:id"          {:as request}
+    (PATCH  "/:id"   {:as request}
       :path-params   [id :- String]
-      :body-params   [{username :- String ""}
-                      {password :- String ""}
-                      {email :- String ""}]
+      :body-params   [username :- String password :- String]
       :header-params [authorization :- String]
-      :return        User
+      :return        {:message String} 
       :middleware    [token-auth-mw cors-mw authenticated-mw]
       :summary       "Update some or all fields of a specified user. Requires token to have self ID."
       :description   "Authorization header expects the following format 'Token {token}'"
-      (modify-user-response request id username password email))
+      (modify-user-response request id username password))
 
     (GET "/networks" {:as request}
       :header-params [authorization :- String]

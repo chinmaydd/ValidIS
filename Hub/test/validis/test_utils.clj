@@ -42,8 +42,8 @@
 (defn add-users
   "Add test users to the database."
   []
-  (let [user-1 {:email "chinmay1dd@gmail.com" :username "chinmaydd" :password "password"}
-        user-2 {:email "pranavv@gmail.com" :username "pranavv" :password "pass12345"}]
+  (let [user-1 {:email "user1@test.com" :username "user1" :password "password"}
+        user-2 {:email "user2@test.com" :username "user2" :password "pass12345"}]
     (app (-> (mock/request :post "/api/user" (ch/generate-string user-1))
              (mock/content-type "application/json")))
 

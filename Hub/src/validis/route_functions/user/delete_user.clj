@@ -8,9 +8,7 @@
   "Delete a user by Id"
   [id]
   (let [deleted-user (query/delete-user {:id id})]
-    (if (not= 0 deleted-user)
-      (respond/ok        {:message (format "User id %s successfully removed" id)})
-      (respond/not-found {:error "Userid does not exist"}))))
+      (respond/ok        {:message (format "User id %s successfully removed" id)})))
 
 (defn delete-user-response
   "Generates response for user deletion. We check if the user is deleting himself. Identity details are taken from the request token."

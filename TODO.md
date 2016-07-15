@@ -1,8 +1,6 @@
-[1] Add tests for creation/deletion/modification of users.
-
 [2] Add tests for creation/deletion/modification of networks.
 
-[3] F: Add feature for password reset.
+[3] F: Add feature for password reset by email
 
 [4] Finish TPS
 
