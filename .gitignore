@@ -12,3 +12,4 @@ Hub/profiles.clj
 Hub/doc
 Hub/target/stale/leiningen.core.classpath.extract-native-dependencies
 TouchPoint Sensor/environment.rb
+TouchPoint Sensor/doc/

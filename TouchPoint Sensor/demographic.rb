@@ -10,6 +10,7 @@ require './basic'
 @db_pass = ENV['db_pass']
 @db_name = ENV['db_name']
 
+# Estabilish a connection to the underlying database based on the environment variables.
 ActiveRecord::Base.establish_connection( :adapter  => "mysql2",
                                          :host     => @db_host,
                                          :username => @db_user,
