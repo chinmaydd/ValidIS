@@ -25,7 +25,6 @@
   [request token]
   (mock/header request "Authorization" (str "Token " token)))  
 
-
 (defn get-user-token
   "Get a token for a user"
   [username-and-password]
@@ -49,3 +48,15 @@
 
     (app (-> (mock/request :post "/api/user" (ch/generate-string user-2))
              (mock/content-type "application/json")))))
+
+(defn add-networks
+  "Adds test networks to the database."
+  []
+  (let [network-1 {:name "test-network-1" :location "BC"}
+        network-2 {:name "test-network-2" :location "Montreal"}]
+    (app (-> (mock/request :post "/api/network" (ch/generate-string network-1))
+             (mock/content-type "application/json")
+             (get-token-auth-header-for-user "user1:password")))
+    (app (-> (mock/request :post "/api/network" (ch/generate-string network-2))
+             (mock/content-type "application/json")
+             (get-token-auth-header-for-user "user2:pass12345")))))

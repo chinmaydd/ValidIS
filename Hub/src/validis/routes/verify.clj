@@ -8,6 +8,8 @@
 (def verification-routes
   "Specify routes for user verification"
   (context "/api/verify" []
+    :tags ["Verify"]
+
     (POST "/" {:as request}
       :return {:message String}
       :body-params [email :- String verification-string :- String]

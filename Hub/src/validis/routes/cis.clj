@@ -28,10 +28,11 @@
     ;;;;;;;;;;;;;;;;;;;;;
 
     (POST "/" {:as request}
-      :return {:message String}
+      :responses {200 {:id String :name String},
+                 401 {:error String}}
       :middleware [cors-mw]
       :body-params [name :- String address :- String api_url :- String]
-      :summary "Add a new CIS to the database. The API url should point to the TPS Api of the CIS."
+      :summary "Add a new CIS to the database. The API url should point to the TPS API of the CIS."
       (insert-cis-response request name address api_url))
 
     (GET "/all" {:as request}

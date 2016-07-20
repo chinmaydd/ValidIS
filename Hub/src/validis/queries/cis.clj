@@ -52,3 +52,12 @@
   [cis-data]
   (let [cis-list (:cis-list cis-data)]
     (map #(get (mc/find-one-as-map db "cis" {:_id (object-id %)} [:api-url]) :api-url) cis-list)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Deletion queries for CIS ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn empty-cis-database
+  "Empties the CIS database and removes all the documents in it."
+  []
+  (mc/remove db "cis"))

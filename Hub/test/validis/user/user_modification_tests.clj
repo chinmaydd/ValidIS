@@ -1,4 +1,4 @@
-;; test/validis.user/user-modification-tests.clj
+;; test/validis/validis/cis/insert_cis_tests.clj
 (ns validis.user.user-modification-tests
   "Contains user deletion tests."
   (:require [clojure.test :refer :all]
@@ -14,15 +14,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn setup-teardown
+  "Sets up the database for testing"
   [f]
   (do
     (helper/add-users)
     (f)
     (query/empty-user-database)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Test user for deletion queries ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-fixtures :each setup-teardown)
 

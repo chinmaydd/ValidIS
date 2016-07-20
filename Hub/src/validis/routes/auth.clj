@@ -11,6 +11,8 @@
 (def auth-routes
   "Specify routes for Authentication functions"
   (context "/api/auth" []
+    :tags ["Auth"]
+
     (GET "/"             {:as request}
       :return        {:id String :username String :token String :refreshToken String}
       :header-params [authorization :- String]

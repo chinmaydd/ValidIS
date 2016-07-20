@@ -86,6 +86,11 @@
   (let [id (object-id (:network-id network-data))]
     (.getN (mc/remove-by-id db "networks" id))))
 
+(defn empty-network-database
+  "Empties the network database and removes all the documents in it."
+  []
+  (mc/remove db "networks"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Getter functions for Network ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
