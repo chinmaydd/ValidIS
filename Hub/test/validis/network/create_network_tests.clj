@@ -20,10 +20,6 @@
       (n-query/empty-network-database)
       (u-query/empty-user-database)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Test user for deletion queries ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-fixtures :each setup-teardown)
 
 (deftest can-create-network-if-unique-network-name-and-valid-user

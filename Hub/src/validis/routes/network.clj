@@ -60,7 +60,7 @@
       :middleware         [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
       :summary            "Modifies the existing network information. Requires user token and the network must belong to the user"
       :description        "Authorization header expects the following format 'Token {token}'"
-      (modify-network-response request name location network-id))
+      (modify-network-response request network-id name location))
 
     (DELETE "/:network-id"     {:as request}
       :path-params       [network-id :- String]

@@ -24,10 +24,6 @@
       (n-query/empty-network-database)
       (u-query/empty-user-database)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Test user for deletion queries ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-fixtures :each setup-teardown)
 
 (deftest can-share-network-with-user-if-owner-and-user-exists

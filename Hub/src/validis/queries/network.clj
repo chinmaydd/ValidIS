@@ -30,7 +30,7 @@
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))]
-    (mc/update-by-id db "networks" network-id {$set network-data})))
+    (mc/update-by-id db "networks" network-id {$set (dissoc network-data :network-id)})))
 
 (defn add-cis-to-network
   "Adds a CIS to a given network
