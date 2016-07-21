@@ -1,5 +1,5 @@
-;; test/validis/network/create_network_tests.clj
-(ns validis.network.create-network-tests
+;; test/validis/network/network_creation_tests.clj
+(ns validis.network.network-creation-tests
   (:require [clojure.test :refer :all]
             [validis.handler :refer :all]
             [validis.test-utils :as helper]

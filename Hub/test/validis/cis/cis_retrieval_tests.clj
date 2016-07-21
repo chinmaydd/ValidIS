@@ -1,5 +1,5 @@
-;; test/validis/cis/get_all_cis_tests.clj
-(ns validis.cis.get-all-cis-tests
+;; test/validis/cis/cis_retrieval_tests.clj
+(ns validis.cis.cis-retrieval-tests
   "Contains tests to check for retrieval of all CIS"
   (:require [clojure.test :refer :all]
             [validis.handler :refer :all]

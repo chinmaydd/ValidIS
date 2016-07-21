@@ -1,5 +1,5 @@
-;; test/validis/cis/insert_cis_tests.clj
-(ns validis.cis.insert-cis-tests
+;; test/validis/cis/cis_insertion_tests.clj
+(ns validis.cis.cis-insertion-tests
   "Contains tests to check CIS insertion into a database."
   (:require [clojure.test :refer :all]
             [validis.handler :refer :all]

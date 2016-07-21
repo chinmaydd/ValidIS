@@ -1,5 +1,5 @@
-;; test/verify/verification_test.clj
-(ns validis.verify.verification-test
+;; test/verify/user_verification_tests.clj
+(ns validis.verify.user-verification-tests
  "Contains email verification tests."
  (:require [clojure.test :refer :all]
            [validis.handler :refer :all]

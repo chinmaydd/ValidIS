@@ -1,5 +1,5 @@
-;; test/validis/network/delete_network_tests.clj
-(ns validis.network.delete-network-tests
+;; test/validis/network/network_deletion_tests.clj
+(ns validis.network.network-deletion-tests
   (:require [clojure.test :refer :all]
             [validis.handler :refer :all]
             [validis.test-utils :as helper]
