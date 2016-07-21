@@ -52,7 +52,7 @@
       :description   "Authorization header expects the following format 'Token {token}'"
       (create-network-response request name location))
 
-    (PATCH "/:network-id"      {:as request}
+    (PATCH "/:network-id" {:as request}
       :path-params        [network-id :- String]
       :body-params        [{name :- String ""} {location :- String ""}]
       :header-params      [authorization :- String]

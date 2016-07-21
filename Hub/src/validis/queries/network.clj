@@ -122,6 +122,11 @@
   (let [name (:name network-data)]
     (mc/find-one-as-map db "networks" {:name name})))
 
+(defn get-all-networks
+  "Returns all the networks in the database."
+  []
+  (mc/find-maps db "networks"))
+
 (defn check-if-owned-network?
   "Checks if the user-id provided matches with the owner's user-id of the network.
   Returns 0 if true, 1 otherwise.

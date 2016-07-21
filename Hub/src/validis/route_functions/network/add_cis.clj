@@ -19,4 +19,4 @@
         cis-exists?     (not-empty cis-query)]
     (cond
       cis-exists? (add-cis-to-network network-id cis-id)
-      :else       (respond/not-found {:error "CIS does not exist! Please add it to the db first"}))))
+      :else       (respond/bad-request {:error "CIS does not exist! Please add it to the db first"}))))

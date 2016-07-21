@@ -60,3 +60,13 @@
     (app (-> (mock/request :post "/api/network" (ch/generate-string network-2))
              (mock/content-type "application/json")
              (get-token-auth-header-for-user "user2:pass12345")))))
+
+(defn add-cis
+  "Adds test cis to the database for testing"
+  []
+  (let [test-cis-1 {:name "Clinic1" :address "Vic" :api_url "https://google.com"}
+        test-cis-2 {:name "Clinic2" :address "BC" :api_url "https://github.com"}]
+        (app (-> (mock/request :post "/api/cis" (ch/generate-string test-cis-1))
+                 (mock/content-type "application/json")))
+        (app (-> (mock/request :post "/api/cis" (ch/generate-string test-cis-2))
+                 (mock/content-type "application/json")))))

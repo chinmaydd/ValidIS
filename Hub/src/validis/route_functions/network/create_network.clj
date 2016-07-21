@@ -13,7 +13,7 @@
                                                :location location
                                                :owner-id (object-id owner-id)
                                                :CIS-list []})]
-    (respond/created {:id (str (:_id new-network))})))
+    (respond/ok {:network-id (str (:_id new-network))})))
 
 (defn create-network-response
   "Generates a response on creation of a network. `owner-id` is assigned through the id present in the `:identity` field in the request. We check if the network already exists. If it does, we return a conflict response."

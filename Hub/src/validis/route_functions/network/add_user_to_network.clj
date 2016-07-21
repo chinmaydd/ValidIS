@@ -18,4 +18,4 @@
         user-exists?  (not-empty shared-user)]
     (if user-exists?
       (add-user-to-network network-id user-id)
-      (respond/not-found {:error "User not found!"}))))
+      (respond/bad-request {:error "User not found!"}))))
