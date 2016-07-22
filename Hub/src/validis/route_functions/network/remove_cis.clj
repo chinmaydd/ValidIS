@@ -15,8 +15,11 @@
 (defn remove-cis-response
   "Generates a response on removal of CIS from a network. We first check if the CIS we are trying to remove exists. If it does not, we return a not-found response."
   [network-id cis-id]
-  (let [cis-query (c-query/get-cis-by-id {:cis-id cis-id})
-        cis-exists? (not-empty cis-query)]
+  (let [cis-query               (c-query/get-cis-by-id {:cis-id cis-id})
+        cis-exists?             (not-empty cis-query)
+        cis-list                (:CIS-list (n-query/get-network-by-id {:network-id network-id}))
+        cis-present-in-network? (.contains cis-list cis-id)]
     (cond
-      cis-exists? (remove-cis-from-network network-id cis-id)
-      :else       (respond/not-found {:error "CIS you are trying to delete does not exist!"}))))
+      (and cis-exists? cis-present-in-network?) (remove-cis-from-network network-id cis-id)
+      (not cis-exists?)                         (respond/bad-request {:error "CIS you are trying to remove does not exist!"})
+      (not cis-present-in-network?)             (respond/bad-request {:error "CIS you are trying to remove is not present in the network!"}))))

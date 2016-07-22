@@ -4,6 +4,8 @@
             [ring.mock.request :as mock]
             [validis.handler :refer [app]]
             [buddy.core.codecs :as codecs]
+            [validis.queries.cis :as c-query]
+            [validis.queries.network :as n-query]
             [buddy.core.codecs.base64 :as b64]))
 
 (def str->base64
@@ -70,3 +72,14 @@
                  (mock/content-type "application/json")))
         (app (-> (mock/request :post "/api/cis" (ch/generate-string test-cis-2))
                  (mock/content-type "application/json")))))
+
+(defn add-cis-to-network
+  "Adds test CIS to network for testing"
+  []
+  (let [test-cis        (c-query/get-cis-by-field {:name "Clinic1"})
+        test-cis-id     (str (:_id test-cis))
+        test-network    (n-query/get-network-by-name {:name "test-network-1"})
+        test-network-id (str (:_id test-network))]
+    (app (-> (mock/request :post (str "/api/network/" test-network-id "/cis/" test-cis-id))
+             (mock/content-type "application/json")
+             (get-token-auth-header-for-user "user1:password")))))
