@@ -147,8 +147,9 @@
   "
   [network-data]
   (let [network-id (object-id (:network-id network-data))
-        user-id (:user-id network-data)]
-    (if (not-empty (mc/find-one-as-map db "networks" {$and [{:_id network-id} {:shared-user-list {$in [user-id]}}]}))
+        user-id    (:user-id network-data)]
+    (if (not-empty (mc/find-one-as-map db "networks"
+      {$and [{:_id network-id} {:shared-user-list {$in [user-id]}}]}))
       true
       false)))
 

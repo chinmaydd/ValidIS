@@ -18,7 +18,6 @@
   (do
       (helper/add-users)
       (helper/add-networks)
-      (helper/add-cis)
       (f)
       (c-query/empty-cis-database)
       (n-query/empty-network-database)

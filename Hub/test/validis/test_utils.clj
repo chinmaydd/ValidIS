@@ -5,6 +5,7 @@
             [validis.handler :refer [app]]
             [buddy.core.codecs :as codecs]
             [validis.queries.cis :as c-query]
+            [validis.queries.user :as u-query]
             [validis.queries.network :as n-query]
             [buddy.core.codecs.base64 :as b64]))
 
@@ -81,5 +82,16 @@
         test-network    (n-query/get-network-by-name {:name "test-network-1"})
         test-network-id (str (:_id test-network))]
     (app (-> (mock/request :post (str "/api/network/" test-network-id "/cis/" test-cis-id))
+             (mock/content-type "application/json")
+             (get-token-auth-header-for-user "user1:password")))))
+
+(defn add-user-to-network
+  "Adds a test user to network"
+  []
+  (let [user-2        (u-query/get-user-by-field {:username "user2"})
+        user-2-id     (str (:_id user-2))
+        network-1     (n-query/get-network-by-name {:name "test-network-1"})
+        network-1-id  (str (:_id network-1))]
+    (app (-> (mock/request :post (str "/api/network/" network-1-id "/user/" user-2-id))
              (mock/content-type "application/json")
              (get-token-auth-header-for-user "user1:password")))))
