@@ -24,7 +24,9 @@
 
 (deftest can-create-network-if-unique-network-name-and-valid-user
   (testing "Can create user if unique network name and valid user"
-    (let [network-data {:name "test-network-1" :location "BC"}
+    (let [test-user    (u-query/get-user-by-field {:username "user1"})
+          user-id      (str (:_id test-user))
+          network-data {:name "test-network-1" :location "BC"}
           response     (app (-> (mock/request :post "/api/network" (ch/generate-string network-data))
                                 (mock/content-type "application/json")
                                 (helper/get-token-auth-header-for-user "user1:password")))
@@ -34,6 +36,8 @@
           body         (helper/parse-body (:body response))]
       (is (= 200        (:status response)))
       (is (= network-id (:network-id body)))
+      (is (= "BC"       (:location network-1)))
+      (is (= user-id    (:owner-id network-1)))
       (is (= 1          (count all-networks))))))
 
 (deftest can-not-create-network-with-the-same-name

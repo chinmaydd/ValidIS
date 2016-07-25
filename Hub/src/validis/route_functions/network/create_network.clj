@@ -11,8 +11,9 @@
   [name location owner-id]
   (let [new-network (query/create-new-network {:name name
                                                :location location
-                                               :owner-id (object-id owner-id)
-                                               :CIS-list []})]
+                                               :owner-id owner-id
+                                               :CIS-list []
+                                               :shared-user-list []})]
     (respond/ok {:network-id (str (:_id new-network))})))
 
 (defn create-network-response
