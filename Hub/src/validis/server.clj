@@ -1,13 +1,14 @@
+;; src/validis/server.clj
 (ns validis.server
   "Server."
   (:require [org.httpkit.server :as httpkit]
             [compojure.core :as route]
             [compojure.handler :as handler]
             [validis.handler :refer [app]]
-            [validis.api-routes.home :refer [home-api-routes]]))
+            [validis.views.home :refer [home-routes]]))
 
 (def site-and-api
-  (route/api-routes app home-api-routes))
+  (route/routes app home-routes))
 
 ;; Main server function.
 (defn -main [port]

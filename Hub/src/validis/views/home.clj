@@ -1,5 +1,5 @@
-;; src/validis/validis/api-routes/home.clj
-(ns validis.api-routes.home
+;; src/validis/views/home.clj
+(ns validis.views.home
   (:use [hiccup core form])
   (:require [compojure.core :refer :all]
             [compojure.handler :as handler]))
@@ -12,6 +12,6 @@
    (submit-button {:class "btn" :name "submit"} "Save")
    (submit-button {:class "btn" :name "submit"} "Clone"))))
 
-(defapi-routes home-api-routes
+(defroutes home-routes
  (GET "/form-in" [] (quick-form))
  (POST "/form-out" [:as request] (str (request :multipart-params))))
