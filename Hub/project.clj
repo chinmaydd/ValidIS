@@ -8,6 +8,7 @@
                  [http-kit                   "2.2.0"]
                  [clj-http                   "2.2.0"]
                  [environ                    "1.0.3"]
+                 [hiccup                     "1.0.5"]
                  [buddy                      "1.0.0"]
                  [midje                      "1.8.3"]
                  [com.draines/postal         "2.0.0"]

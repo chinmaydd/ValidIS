@@ -10,7 +10,7 @@
 
 (defapi app
   {:swagger
-   {:ui "/"
+   {:ui "/api-docs"
     :spec "/swagger.json"
     :data {:info {:title "Validis"
                   :description "Cloud based runtime monitoring system for clinical information systems"
