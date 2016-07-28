@@ -1,5 +1,5 @@
-;; src/route-functions/network/get-network-information.clj
-(ns validis.route-functions.network.get-network-information
+;; src/validis/core-functions/network/get-network-information.clj
+(ns validis.core-functions.network.get-network-information
   "The real deal."
   (:require [validis.queries.network :as n-query]
             [validis.queries.cis :as c-query]

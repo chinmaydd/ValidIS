@@ -1,4 +1,4 @@
-;; src/middleware/cors.clj
+;; src/validis/middleware/cors.clj
 (ns validis.middleware.cors
   "Cross-Origin request policiy")
 

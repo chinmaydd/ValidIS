@@ -1,4 +1,4 @@
-;; src/queries/network.clj
+;; src/validis/queries/network.clj
 (ns validis.queries.network
   "Queries for the network document store."
   (:require [monger.collection :as mc]

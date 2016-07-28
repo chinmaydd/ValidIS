@@ -1,5 +1,5 @@
-;; src/route-functions/verify/verify.clj
-(ns validis.route-functions.verify.verify
+;; src/validis/core-functions/verify/verify.clj
+(ns validis.core-functions.verify.verify
   "Email based user verification."
   (:require [validis.queries.user :as query]
             [ring.util.http-response :as respond]))

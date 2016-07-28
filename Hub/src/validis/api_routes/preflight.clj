@@ -1,10 +1,10 @@
-(ns validis.routes.preflight
+(ns validis.api-routes.preflight
   (:require [validis.middleware.cors :refer [cors-mw]]
             [compojure.api.sweet :refer :all]
             [ring.util.http-response :as respond]))
 
 (def preflight-route
-  "Specify routes for Preflight functions"
+  "Specify api-routes for Preflight functions"
   (context "/api" []
 
     (OPTIONS "*"           {:as request}

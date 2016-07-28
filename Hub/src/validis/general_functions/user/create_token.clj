@@ -1,4 +1,4 @@
-;; src/general_functions/user/create_token.clj
+;; src/validis/general_functions/user/create_token.clj
 (ns validis.general-functions.user.create-token
   "Contains functions for creation of auth-token."
   (:require [environ.core :refer [env]]

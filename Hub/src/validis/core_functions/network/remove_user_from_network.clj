@@ -1,5 +1,5 @@
-;; src/route-functions/network/remove_user_from_network.clj
-(ns validis.route-functions.network.remove-user-from-network
+;; src/validis/core-functions/network/remove_user_from_network.clj
+(ns validis.core-functions.network.remove-user-from-network
   "Contains functions to remove a cis from a network."
   (:require [ring.util.http-response :as respond]
             [validis.queries.network :as n-query]

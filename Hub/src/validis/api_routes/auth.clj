@@ -1,15 +1,15 @@
-;; src/routes/auth.clj
-(ns validis.routes.auth
-  "Routes for authentication API."
+;; src/validis/api-routes/auth.clj
+(ns validis.api-routes.auth
+  "api-routes for authentication API."
   (:require [validis.middleware.basic-auth :refer [basic-auth-mw]]
             [validis.middleware.authenticated :refer [authenticated-mw]]
             [validis.middleware.cors :refer [cors-mw]]
-            [validis.route-functions.auth.get-auth-credentials :refer [auth-credentials-response]]
+            [validis.core-functions.auth.get-auth-credentials :refer [auth-credentials-response]]
             [schema.core :as s]
             [compojure.api.sweet :refer :all]))
 
-(def auth-routes
-  "Specify routes for Authentication functions"
+(def auth-api-routes
+  "Specify api-routes for Authentication functions"
   (context "/api/auth" []
     :tags ["Auth"]
 

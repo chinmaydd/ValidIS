@@ -1,4 +1,4 @@
-;; src/schemas/network.clj
+;; src/validis/schemas/network.clj
 (ns validis.schemas.network
   "Schemas for Network and NetworkList."
   (:require [schema.core         :as s]

@@ -1,5 +1,5 @@
-;; src/route-functions/user/create-user.clj
-(ns validis.route-functions.user.create-user
+;; src/validis/core-functions/user/create-user.clj
+(ns validis.core-functions.user.create-user
   "Contains functions to create a new user account."
   (:require [validis.queries.user :as query]
             [buddy.hashers :as hashers]

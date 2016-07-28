@@ -1,4 +1,4 @@
-;; src/middleware/owner_auth.clj
+;; src/validis/middleware/owner_auth.clj
 (ns validis.middleware.owner-auth
   "Contains middleware function to check if the request made to update/modify the network is done by the owner."
   (:require [ring.util.http-response :refer [unauthorized not-found]]

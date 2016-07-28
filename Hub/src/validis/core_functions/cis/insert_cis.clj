@@ -1,5 +1,5 @@
-;; src/route-functions/cis/insert_cis.clj
-(ns validis.route-functions.cis.insert-cis
+;; src/validis/core-functions/cis/insert_cis.clj
+(ns validis.core-functions.cis.insert-cis
   "Contains function for insertion of a CIS into the db."
   (:require [validis.queries.cis :as query]
             [ring.util.http-response :as respond]

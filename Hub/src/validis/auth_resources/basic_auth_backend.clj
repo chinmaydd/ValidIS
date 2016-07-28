@@ -1,4 +1,4 @@
-;; src/auth_resources/basic_auth_backend.clj
+;; src/validis/auth_resources/basic_auth_backend.clj
 (ns validis.auth-resources.basic-auth-backend
   "User auth backend."
   (:require [validis.queries.user :as query]

@@ -1,4 +1,4 @@
-;; src/schemas.user.clj
+;; src/validis/schemas.user.clj
 (ns validis.schemas.user
   "Schema for User."
   (:require [schema.core :as s]))

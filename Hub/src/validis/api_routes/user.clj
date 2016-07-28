@@ -1,6 +1,6 @@
-;; src/routes/user.clj
-(ns validis.routes.user
-  "Routes for user."
+;; src/validis/api-routes/user.clj
+(ns validis.api-routes.user
+  "api-routes for user."
   (:require
    ;; Middleware inclusions
    [validis.middleware.cors :refer [cors-mw]]
@@ -8,10 +8,10 @@
    [validis.middleware.authenticated :refer [authenticated-mw]]
 
    ;; Route function inclusions
-   [validis.route-functions.user.create-user :refer [create-user-response]]
-   [validis.route-functions.user.delete-user :refer [delete-user-response]]
-   [validis.route-functions.user.modify-user :refer [modify-user-response]]
-   [validis.route-functions.user.list-networks :refer [list-network-response]]
+   [validis.core-functions.user.create-user :refer [create-user-response]]
+   [validis.core-functions.user.delete-user :refer [delete-user-response]]
+   [validis.core-functions.user.modify-user :refer [modify-user-response]]
+   [validis.core-functions.user.list-networks :refer [list-network-response]]
 
    ;; Schema inclusions
    [validis.schemas.user :refer [User]]
@@ -22,8 +22,8 @@
    [schema.core :as s]
    [compojure.api.sweet :refer :all]))
 
-(def user-routes
-  "Specify routes for the user functions"
+(def user-api-routes
+  "Specify api-routes for the user functions"
   (context "/api/user" []
     :tags ["User"]
 
@@ -48,7 +48,7 @@
       :body-params   [{username :- String ""}
                       {password :- String ""}]
       :header-params [authorization :- String]
-      :return        {:message String} 
+      :return        {:message String}
       :middleware    [token-auth-mw cors-mw authenticated-mw]
       :summary       "Update some or all fields of a specified user. Requires token to have self ID."
       :description   "Authorization header expects the following format 'Token {token}'"

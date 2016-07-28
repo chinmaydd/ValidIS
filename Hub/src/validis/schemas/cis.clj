@@ -1,4 +1,4 @@
-;; src/schemas/cis.clj
+;; src/validis/schemas/cis.clj
 (ns validis.schemas.cis
   "Schemas for CIS and CISList."
   (:require [schema.core :as s]))

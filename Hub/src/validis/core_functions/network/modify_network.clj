@@ -1,5 +1,5 @@
-;; src/route-functions/network/modify-network.clj
-(ns validis.route-functions.network.modify-network
+;; src/validis/core-functions/network/modify-network.clj
+(ns validis.core-functions.network.modify-network
   "Contains functions to modify network information."
   (:require [validis.queries.network :as query]
             [ring.util.http-response :as respond]))

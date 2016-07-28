@@ -1,5 +1,5 @@
-;; src/route-functions/auth/get-auth-credentials.clj
-(ns validis.route-functions.auth.get-auth-credentials
+;; src/validis/core-functions/auth/get-auth-credentials.clj
+(ns validis.core-functions.auth.get-auth-credentials
   "Contains function for responding to a request for generating an auth-token."
   (:require [validis.general-functions.user.create-token :refer [create-token]]
             [validis.queries.user :as query]

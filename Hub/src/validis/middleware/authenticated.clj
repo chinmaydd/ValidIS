@@ -1,4 +1,4 @@
-;; src/middleware/authenticated.clj
+;; src/validis/middleware/authenticated.clj
 (ns validis.middleware.authenticated
   "Contains functions for checking if the user is verified AND his token is authenticated!"
   (:require [buddy.auth              :refer [authenticated?]]
@@ -14,7 +14,7 @@
     is-verified?))
 
 (defn authenticated-mw
-  "Middleware used in routes that require authentication. If request is not
+  "Middleware used in api-routes that require authentication. If request is not
    authenticated a 401 not authorized response will be returned"
   [handler]
   (fn [request]

@@ -1,5 +1,5 @@
-;; src/route-functions/network/add_cis.clj
-(ns validis.route-functions.network.add-cis
+;; src/validis/core-functions/network/add_cis.clj
+(ns validis.core-functions.network.add-cis
   "Contains function to add a new CIS to a network document."
   (:require [validis.queries.cis :as c-query]
             [validis.queries.network :as n-query]

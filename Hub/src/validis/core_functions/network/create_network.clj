@@ -1,5 +1,5 @@
-;; src/route-functions/network/create-network.clj
-(ns validis.route-functions.network.create-network
+;; src/validis/core-functions/network/create-network.clj
+(ns validis.core-functions.network.create-network
   "Contains functions to add a new network."
   (:require [validis.queries.network :as query]
             [buddy.hashers :as hashers]

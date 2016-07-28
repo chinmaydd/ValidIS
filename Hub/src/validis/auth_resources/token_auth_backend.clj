@@ -1,4 +1,4 @@
-;; src/auth_resources/token_auth_backend.clj
+;; src/validis/auth_resources/token_auth_backend.clj
 (ns validis.auth-resources.token-auth-backend
   "Token auth backend. Contains functions for auth-token validation"
   (:require [environ.core :refer [env]]

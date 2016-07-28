@@ -1,6 +1,6 @@
-;; src/routes/network.clj
-(ns validis.routes.network
-  "Routes for network."
+;; src/validis/api-routes/network.clj
+(ns validis.api-routes.network
+  "api-routes for network."
   (:require
     ;; Middleware inclusions
    [validis.middleware.cors :refer [cors-mw]]
@@ -9,20 +9,20 @@
    [validis.middleware.owner-auth :refer [owner-auth-mw]]
 
     ;; Route function inclusions
-   [validis.route-functions.network.create-network :refer [create-network-response]]
-   [validis.route-functions.network.modify-network :refer [modify-network-response]]
-   [validis.route-functions.network.delete-network :refer [delete-network-response]]
-   [validis.route-functions.network.add-cis :refer [add-cis-response]]
-   [validis.route-functions.network.remove-cis :refer [remove-cis-response]]
-   [validis.route-functions.network.add-user-to-network :refer [add-user-to-network-response]]
-   [validis.route-functions.network.remove-user-from-network :refer [remove-user-from-network-response]]
-   [validis.route-functions.network.get-network-information :refer [get-network-information]]
+   [validis.core-functions.network.create-network :refer [create-network-response]]
+   [validis.core-functions.network.modify-network :refer [modify-network-response]]
+   [validis.core-functions.network.delete-network :refer [delete-network-response]]
+   [validis.core-functions.network.add-cis :refer [add-cis-response]]
+   [validis.core-functions.network.remove-cis :refer [remove-cis-response]]
+   [validis.core-functions.network.add-user-to-network :refer [add-user-to-network-response]]
+   [validis.core-functions.network.remove-user-from-network :refer [remove-user-from-network-response]]
+   [validis.core-functions.network.get-network-information :refer [get-network-information]]
 
     ;; Utility libs
    [compojure.api.sweet :refer :all]))
 
-(def network-routes
-  "Specify routes for network functions"
+(def network-api-routes
+  "Specify api-routes for network functions"
   (context "/api/network" []
     :tags ["Network"]
 
@@ -40,7 +40,7 @@
       (get-network-information network-id))
 
            ;;;;;;;;;;;;;;;;;;;;;;;;;
-           ;; Network CRUD routes ;;
+           ;; Network CRUD api-routes ;;
            ;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (POST "/"        {:as request}
@@ -72,7 +72,7 @@
       (delete-network-response network-id))
 
            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-           ;; Network CIS interaction routes ;;
+           ;; Network CIS interaction api-routes ;;
            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (POST "/:network-id/cis/:cis-id" {:as request}
@@ -94,7 +94,7 @@
       (remove-cis-response network-id cis-id))
 
            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-           ;; Network User interaction routes ;;
+           ;; Network User interaction api-routes ;;
            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (POST "/:network-id/user/:user-id" {:as request}

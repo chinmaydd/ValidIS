@@ -1,5 +1,5 @@
-;; src/route-functions/user/modify-user.clj
-(ns validis.route-functions.user.modify-user
+;; src/validis/core-functions/user/modify-user.clj
+(ns validis.core-functions.user.modify-user
   "Contains functions to modify user."
   (:require [validis.queries.user :as query]
             [buddy.hashers :as hashers]

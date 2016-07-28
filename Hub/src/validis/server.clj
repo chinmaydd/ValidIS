@@ -4,10 +4,10 @@
             [compojure.core :as route]
             [compojure.handler :as handler]
             [validis.handler :refer [app]]
-            [validis.routes.home :refer [home-routes]]))
+            [validis.api-routes.home :refer [home-api-routes]]))
 
 (def site-and-api
-  (route/routes app home-routes))
+  (route/api-routes app home-api-routes))
 
 ;; Main server function.
 (defn -main [port]

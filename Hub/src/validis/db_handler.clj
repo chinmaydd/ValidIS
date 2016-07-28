@@ -1,4 +1,4 @@
-;; src/db_handler.clj
+;; src/validis/db_handler.clj
 (ns validis.db-handler
   "DB handler variables."
   (:require [monger.core :as mg]

@@ -1,4 +1,4 @@
-;; src/queries/cis.clj
+;; src/validis/queries/cis.clj
 (ns validis.queries.cis
   "Queries for the CIS document store."
   (:require [monger.collection :as mc]

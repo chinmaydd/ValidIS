@@ -1,4 +1,4 @@
-;; src/queries/user.clj
+;; src/validis/queries/user.clj
 (ns validis.queries.user
   "Queries for the user document store."
   (:require [monger.collection :as mc]

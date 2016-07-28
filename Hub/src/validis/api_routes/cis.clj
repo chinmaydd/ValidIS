@@ -1,6 +1,6 @@
-;; src/routes/cis.clj
-(ns validis.routes.cis
-  "Routes for CIS."
+;; src/validis/api-routes/cis.clj
+(ns validis.api-routes.cis
+  "api-routes for CIS."
   (:require
    ;; Middleware inclusions
    [validis.middleware.cors :refer [cors-mw]]
@@ -9,8 +9,8 @@
    [validis.print-handler :refer [print-handler]]
 
    ;; Route function inclusions
-   [validis.route-functions.cis.insert-cis :refer [insert-cis-response]]
-   [validis.route-functions.cis.get-all-cis :refer [get-all-cis]]
+   [validis.core-functions.cis.insert-cis :refer [insert-cis-response]]
+   [validis.core-functions.cis.get-all-cis :refer [get-all-cis]]
 
    ;; Schema inclusions
    [validis.schemas.cis :refer [CISList]]
@@ -18,13 +18,13 @@
    ;; Utility libs
    [compojure.api.sweet :refer :all]))
 
-(def cis-routes
-  "Specify routes for cis functions"
+(def cis-api-routes
+  "Specify api-routes for cis functions"
   (context "/api/cis" []
     :tags ["CIS"]
 
     ;;;;;;;;;;;;;;;;;;;;;
-    ;; CIS CRUD routes ;;
+    ;; CIS CRUD api-routes ;;
     ;;;;;;;;;;;;;;;;;;;;;
 
     (POST "/" {:as request}

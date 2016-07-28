@@ -1,12 +1,12 @@
-;; src/routes/verify.clj
-(ns validis.routes.verify
+;; src/validis/api-routes/verify.clj
+(ns validis.api-routes.verify
   "Verification route."
   (:require [validis.middleware.cors :refer [cors-mw]]
             [compojure.api.sweet :refer :all]
-            [validis.route-functions.verify.verify :refer [verify-user]]))
+            [validis.core-functions.verify.verify :refer [verify-user]]))
 
-(def verification-routes
-  "Specify routes for user verification"
+(def verification-api-routes
+  "Specify api-routes for user verification"
   (context "/api/verify" []
     :tags ["Verify"]
 
