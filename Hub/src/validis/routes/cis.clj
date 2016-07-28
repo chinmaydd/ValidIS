@@ -28,8 +28,7 @@
     ;;;;;;;;;;;;;;;;;;;;;
 
     (POST "/" {:as request}
-      :responses {200 {:id String :name String},
-                 401 {:error String}}
+      :return {:id String :name String}
       :middleware [cors-mw]
       :body-params [name :- String address :- String api_url :- String]
       :summary "Add a new CIS to the database. The API url should point to the TPS API of the CIS."

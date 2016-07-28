@@ -43,7 +43,7 @@
            ;; Network CRUD routes ;;
            ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    (POST "/"            {:as request}
+    (POST "/"        {:as request}
       :return        {:network-id String}
       :header-params [authorization :- String]
       :middleware    [token-auth-mw cors-mw authenticated-mw]
