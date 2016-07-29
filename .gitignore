@@ -1,4 +1,6 @@
 Hub/target
+Hub/resources/public/js/*
+Hub/resources/public/css/*
 Hub/lib
 Hub/classes
 Hub/checkouts
