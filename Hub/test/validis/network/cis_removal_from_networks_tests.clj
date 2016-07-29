@@ -1,5 +1,5 @@
 ;; test/validis/network/cis_removal_from_networks_tests.clj
-(ns validis.network.cis-removal-from-networks-tests  
+(ns validis.network.cis-removal-from-networks-tests
   (:require [clojure.test :refer :all]
             [validis.handler :refer :all]
             [validis.test-utils :as helper]

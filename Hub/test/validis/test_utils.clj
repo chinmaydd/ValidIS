@@ -26,7 +26,7 @@
 (defn token-auth-header
   "Generates an auth-header for request authorization"
   [request token]
-  (mock/header request "Authorization" (str "Token " token)))  
+  (mock/header request "Authorization" (str "Token " token)))
 
 (defn get-user-token
   "Get a token for a user"

@@ -83,5 +83,3 @@
   (testing "Can successfully send an email to a user"
     (let [test-user {:email "user1@test.com" :username "user1" :password "pass"}]
       (is (= true true)))))
-
-

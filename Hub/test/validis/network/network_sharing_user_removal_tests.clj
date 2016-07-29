@@ -1,5 +1,5 @@
 ;; test/validis/network/network_sharing_user_removal_tests.clj
-(ns validis.network.network-sharing-user-removal-tests 
+(ns validis.network.network-sharing-user-removal-tests
   (:require [clojure.test :refer :all]
             [validis.handler :refer :all]
             [validis.test-utils :as helper]

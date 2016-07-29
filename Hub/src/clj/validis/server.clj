@@ -5,7 +5,7 @@
             [compojure.core :as route]
             [compojure.handler :as handler]
             [validis.handler :refer [app]]
-            [validis.views.home :refer [home-routes]]))
+            [validis.views.routes :refer [home-routes]]))
 
 (def site-and-api
   (route/routes app home-routes))
