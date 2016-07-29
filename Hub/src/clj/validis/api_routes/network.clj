@@ -7,6 +7,7 @@
    [validis.middleware.token-auth :refer [token-auth-mw]]
    [validis.middleware.authenticated :refer [authenticated-mw]]
    [validis.middleware.owner-auth :refer [owner-auth-mw]]
+   [validis.middleware.shared-owner-auth-mw :refer [shared-owner-auth-mw]]
 
     ;; Route function inclusions
    [validis.core-functions.network.create-network :refer [create-network-response]]
@@ -34,7 +35,7 @@
       :return         {:message String};; A LOT OF THINGS
       :path-params    [network-id :- String]
       :header-params  [authorization :- String]
-      :middleware     [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
+      :middleware     [token-auth-mw cors-mw authenticated-mw shared-owner-auth-mw]
       :summary        "Get the information regarding a particular network!" ;; This is real deal, bro
       :description    "Authorization header expects the following format 'Token {token}'"
       (get-network-information network-id))
