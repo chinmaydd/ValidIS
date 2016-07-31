@@ -14,7 +14,9 @@
                  [com.draines/postal         "2.0.0"]
                  [crypto-random              "1.2.0"]
                  [ring/ring-json             "0.4.0"]
+                 [ring/ring-defaults         "0.2.1"] 
                  ;; ClojureScript
+                 [cljsjs/d3                  "3.5.3-0"]
                  [org.clojure/clojurescript  "1.9.89"]]
 
   :plugins [[lein-midje                        "3.0.0"]
@@ -33,12 +35,11 @@
 
   :cljsbuild
   {:builds
-   [{:figwheel true,
+   [{:id "validis",
      :compiler
      {:pretty-print true,
-      :optimizations :simple,
+      :optimizations :whitespace,
       :output-to "resources/public/js/main.js"},
-     :id "main",
      :source-paths ["src/cljs"]}]}
 
   :source-paths ["src/clj"]

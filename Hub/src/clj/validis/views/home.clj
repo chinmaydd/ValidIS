@@ -3,6 +3,8 @@
   (:require [hiccup [page :refer [html5]]
                     [page :refer [include-js]]]
             [compojure.core :refer :all]
+            [compojure.response :refer [render]]
+            [clojure.java.io :as io]
             [compojure.handler :as handler]))
 
 ;(defn quick-form [& [name message error]]
@@ -13,13 +15,9 @@
    ;(submit-button {:class "btn" :name "submit"} "Save")
    ;(submit-button {:class "btn" :name "submit"} "Clone"))))
 
-(defn index-page []
-  (html5
-    [:head
-      [:title "Hello World"]
-      (include-js "/js/main.js")]
-    [:body
-      [:h1 "Hello World"]]))
+(defn index-page 
+  [req]
+  (render (io/resource "index.html") req))
 
 ;(defroutes home-routes
  ;(GET "/form-in" [] (quick-form))

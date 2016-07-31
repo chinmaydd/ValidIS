@@ -5,10 +5,11 @@
             [compojure.core :as route]
             [compojure.handler :as handler]
             [validis.handler :refer [app]]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [validis.views.routes :refer [home-routes]]))
 
 (def site-and-api
-  (route/routes app home-routes))
+  (wrap-defaults (route/routes app home-routes) site-defaults))
 
 ;; Main server function.
 (defn -main [port]

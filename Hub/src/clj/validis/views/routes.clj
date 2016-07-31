@@ -6,6 +6,6 @@
             [compojure.response :as response]))
 
 (defroutes home-routes
-  (GET "/" [] (index-page))
+  (GET "/" [] index-page)
   (route/resources "/")
   (route/not-found "Page not found!"))
