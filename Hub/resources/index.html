@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-
 .axis--x path {
   display: none;
 }
@@ -11,140 +10,90 @@
   stroke: steelblue;
   stroke-width: 1.5px;
 }
-
 </style>
-<svg width="1200" height="600"></svg>
+<svg width="1200" height="600" style="margin-left:auto; margin-right: auto; display: block;"></svg>
 <script src="/js/d3.v3.min.js"></script>
 <script>
+
+// Specifying min and max dates for plotting the graph.
 var min_date = new Date(2016, 1, 1);
 var max_date = new Date(2016, 7, 1);
 
+// Declaring variables
 var vis = d3.select("svg"),
     WIDTH = 1000,
     HEIGHT = 500,
     MARGINS = {
-        top: 20,
-        right: 20,
-        bottom: 20,
-        left: 50
+top: 20,
+     right: 20,
+     bottom: 20,
+     left: 50
     },
+
     xScale = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right]).domain([min_date, max_date]),
     yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,25]),
-    xAxis = d3.svg.axis()
-    .scale(xScale),
+
+  xAxis = d3.svg.axis()
+.scale(xScale),
   yAxis = d3.svg.axis()
-    .scale(yScale);
+  .scale(yScale);
 
-    vis.append("svg:g")
-    .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
-    .call(xAxis);
+  vis.append("svg:g")
+  .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+  .call(xAxis);
 
-    yAxis = d3.svg.axis()
-    .scale(yScale)
-    .orient("left");
+  yAxis = d3.svg.axis()
+.scale(yScale)
+  .orient("left");
 
-    vis.append("svg:g")
-    .attr("transform", "translate(" + (MARGINS.left) + ",0)")
-    .call(yAxis);
+  vis.append("svg:g")
+  .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+  .call(yAxis);
 
-    data = d3.json("test.json", function(error, data){
-      
+  data = d3.json("test.json", function(error, data){
+
+      // Date format for parsing JSON
       var fmt = d3.time.format("%b %y");
-
       var arr = [];
-      for(key in data[0].basic) {
-        var temp = {};
-        temp["day"] = fmt.parse(key);
-        temp["val"] = data[0].basic[key];
-        arr.push(temp);
+
+      for(key in data) {
+      var temp = {};
+      temp["name"] = data[key].name;
+      temp["values"] = [];
+
+      for(subkey in data[key].basic) {
+      var subtemp = {};
+      subtemp["day"] = fmt.parse(subkey);
+      subtemp["val"] = data[key].basic[subkey];
+      temp["values"].push(subtemp);
+      }
+      arr.push(temp);
+      }
+
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
       }
 
       var lineGen = d3.svg.line()
-      .x(function(d) {
-        debugger
-        return xScale(d.day);
-      })
+        .x(function(d) {
+            return xScale(d.day);
+            })
       .y(function(d) {
-        return yScale(d.val);
-      });
+          return yScale(d.val);
+          });
 
-      vis.append('svg:path')
-      .attr('d', lineGen(arr))
-      .attr('stroke', 'green')
-      .attr('stroke-width', 2)
-      .attr('fill', 'none');
+      for(var i=0; len=arr.length, i<len;i++) {
+          vis.append('svg:path')
+          .attr('d', lineGen(arr[i].values))
+          .attr('stroke', getRandomColor())
+          .attr('stroke-width', 2)
+          .attr('fill', 'none');
+      }
       return data;
-    })
-
-// var svg = d3.select("svg"),
-//     margin = {top: 20, right: 80, bottom: 30, left: 50},
-//     width = svg.attr("width") - margin.left - margin.right,
-//     height = svg.attr("height") - margin.top - margin.bottom,
-//     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-// var x = d3.scaleLinear().range([0, width]),
-//     y = d3.scaleLinear().range([height, 0]),
-//     z = d3.scaleOrdinal(d3.schemeCategory10);
-
-// var line = d3.line()
-//     .curve(d3.curveBasis)
-//     .x(function(d) { return x(d.date); })
-//     .y(function(d) { return y(d.temperature); });
-
-// d3.json("test.json", function(error, data) {
-//   if (error) throw error;
-
-//   debugger
-
-//   var cities = data.columns.slice(1).map(function(id) {
-//     return {
-//       id: id,
-//       values: data.map(function(d) {
-//         return {date: d.date, temperature: d[id]};
-//       })
-//     };
-//   });
-
-//   x.domain(d3.extent(data, function(d) { return d.date; }));
-
-//   y.domain([
-//     d3.min(cities, function(c) { return d3.min(c.values, function(d) { return d.temperature; }); }),
-//     d3.max(cities, function(c) { return d3.max(c.values, function(d) { return d.temperature; }); })
-//   ]);
-
-//   z.domain(cities.map(function(c) { return c.id; }));
-
-//   g.append("g")
-//       .attr("class", "axis axis--x")
-//       .attr("transform", "translate(0," + height + ")")
-//       .call(d3.axisBottom(x));
-
-//   g.append("g")
-//       .attr("class", "axis axis--y")
-//       .call(d3.axisLeft(y))
-//     .append("text")
-//       .attr("transform", "rotate(-90)")
-//       .attr("y", 6)
-//       .attr("dy", "0.71em")
-//       .attr("fill", "#000")
-//       .text("Temperature, ºF");
-
-//   var city = g.selectAll(".city")
-//     .data(cities)
-//     .enter().append("g")
-//       .attr("class", "city");
-
-//   city.append("path")
-//       .attr("class", "line")
-//       .attr("d", function(d) { return line(d.values); })
-//       .style("stroke", function(d) { return z(d.id); });
-
-//   city.append("text")
-//       .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-//       .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
-//       .attr("x", 3)
-//       .attr("dy", "0.35em")
-//       .style("font", "10px sans-serif")
-//       .text(function(d) { return d.id; });
-// });
+  })
 </script>
