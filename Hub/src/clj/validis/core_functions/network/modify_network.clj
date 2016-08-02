@@ -5,7 +5,7 @@
             [ring.util.http-response :as respond]))
 
 (defn modify-network
-  "Modify network information. If the new information is not provided, we use the already existing one for updating the database document."
+  "Modifies network information. If the new information is not provided, we use the already existing one for updating the database document."
   [network-id name location owner-id]
   (let [current-network-info (query/get-network-by-id {:network-id network-id})
         new-name     (if (empty? name)     (str (:name current-network-info)) name)

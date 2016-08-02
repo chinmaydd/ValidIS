@@ -9,6 +9,7 @@
             [validis.views.routes :refer [home-routes]]))
 
 (def site-and-api
+  "Wrap the app and home routes with ring defaults"
   (wrap-defaults (route/routes app home-routes) site-defaults))
 
 ;; Main server function.

@@ -6,7 +6,7 @@
             [buddy.sign.jwt :as jwt]))
 
 (defn create-token
-  "Create a signed json web token. The token contents are; username, email, id,
+  "Creates a signed json web token. The token contents are; username, email, id,
    permissions and token expiration time. Tokens are valid for 15 minutes.
   ** Temporarily removed permissions **"
   [user]

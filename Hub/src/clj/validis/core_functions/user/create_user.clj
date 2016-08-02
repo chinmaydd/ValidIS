@@ -24,7 +24,7 @@
 
 ;; Temporarily disabled email based verification for testing purposes.
 (defn create-user
-  "Create user with  `email`, `username`, `password`. The user is created in the database but not verified. A user will be verified when he posts the verification string on the `/api/verify` endpoint. Email based verification is necessary in the case of bot spamming and automated requests from a single ID suffocating the server resources(when it will be put up on the server)."
+  "Creates user with  `email`, `username`, `password`. The user is created in the database but not verified. A user will be verified when he posts the verification string on the `/api/verify` endpoint. Email based verification is necessary in the case of bot spamming and automated requests from a single ID suffocating the server resources(when it will be put up on the server)."
   [email username password]
   (let [hashed-password     (hashers/encrypt password)
         verification-string (crypto/base64 5)

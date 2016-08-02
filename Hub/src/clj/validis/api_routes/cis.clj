@@ -31,11 +31,13 @@
       :return {:id String :name String}
       :middleware [cors-mw]
       :body-params [name :- String address :- String api_url :- String]
-      :summary "Add a new CIS to the database. The API url should point to the TPS API of the CIS."
+      :summary     "Adds a new CIS to the database"
+      :description "The API URL should point to the TPS(TouchPoint Sensor) URL of the CIS. Adds the CIS into the database. This does not require the user to be a ValidIS user."
       (insert-cis-response request name address api_url))
 
-    (GET "/all" {:as request}
-      :return {:list CISList}
-      :middleware [cors-mw]
-      :summary "Returns an entire list of CIS with their IDs. Useful for users for addition into their own networks."
+    (GET "/all"    {:as request}
+      :return      {:list CISList}
+      :middleware  [cors-mw]
+      :summary     "Returns an entire list of CIS with their IDs"
+      :description "This function is useful for adding new CISs to networks. This does not require the user to be a ValidIS user. This facilitates lookup into the CIS table for non-users."
       (get-all-cis))))

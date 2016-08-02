@@ -6,7 +6,7 @@
             [ring.util.http-response :as respond]))
 
 (defn modify-user
-  "Modify user information. If no new information is provided, we use the already exsiting one for updating the database document."
+  "Modifies user information. If no new information is provided, we use the already exsiting one for updating the database document."
   [current-user-info id username password]
   (let [new-username  (if (empty? username) (:username current-user-info) username)
         new-password  (if (empty? password) (:password current-user-info) (hashers/derive password))

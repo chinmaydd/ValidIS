@@ -7,7 +7,7 @@
             [monger.util :refer [object-id]]))
 
 (defn create-network
-  "Create a network with `name`, `location` and `owner-id`. Response is the id if the operation was successful."
+  "Creates a network with `name`, `location` and `owner-id`. Response is the id if the operation was successful."
   [name location owner-id]
   (let [new-network (query/create-new-network {:name name
                                                :location location

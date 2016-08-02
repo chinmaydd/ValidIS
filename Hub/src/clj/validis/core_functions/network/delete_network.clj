@@ -5,7 +5,7 @@
             [ring.util.http-response :as respond]))
 
 (defn delete-network
-  "Delete a network by its id."
+  "Deletes a network by its id."
   [network-id]
   (query/delete-network {:network-id network-id}))
 

@@ -5,6 +5,7 @@
             [compojure.handler :as handler]
             [compojure.response :as response]))
 
+;; Current status ;)
 (defroutes home-routes
   (GET "/" [] index-page)
   (route/resources "/")

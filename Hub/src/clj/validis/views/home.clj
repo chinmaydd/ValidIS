@@ -8,5 +8,6 @@
             [compojure.handler :as handler]))
 
 (defn index-page 
+  "Function to render the index page."
   [req]
   (render (io/resource "index.html") req))

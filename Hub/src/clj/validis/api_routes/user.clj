@@ -31,7 +31,7 @@
       :return       {:message String}
       :middleware   [cors-mw]
       :body-params  [email :- String username :- String password :- String]
-      :summary      "Create a new user with provided username, email and password."
+      :summary      "Creates a new user with provided username, email and password."
       (create-user-response email username password))
 
     (DELETE "/:id"     {:as request}
@@ -40,7 +40,7 @@
       :return          {:message String}
       :middleware      [token-auth-mw cors-mw authenticated-mw]
       :summary         "Deletes the specified user. Requires token to have self ID."
-      :description     "Authorization header expects the following format 'Token {token}'"
+      :description     "This also deletes all the networks owned by the user. Authorization header expects the following format 'Token {token}'"
       (delete-user-response request id))
 
     (PATCH  "/:id"   {:as request}
@@ -50,7 +50,7 @@
       :header-params [authorization :- String]
       :return        {:message String}
       :middleware    [token-auth-mw cors-mw authenticated-mw]
-      :summary       "Update some or all fields of a specified user. Requires token to have self ID."
+      :summary       "Updates some or all fields of a specified user. Requires token to have self ID."
       :description   "Authorization header expects the following format 'Token {token}'"
       (modify-user-response request id username password))
 
@@ -58,6 +58,6 @@
       :header-params [authorization :- String]
       :return {:list NetworksList}
       :middleware [token-auth-mw cors-mw authenticated-mw]
-      :summary "Used to return a list of networks belonging to a user."
-      :description "Authorization header expecs the following format 'Token {token}'"
+      :summary "Returns a list of networks belonging to a user."
+      :description "Authorization header expects the following format 'Token {token}'"
       (list-network-response request))))

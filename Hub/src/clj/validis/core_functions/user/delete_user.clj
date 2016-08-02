@@ -5,7 +5,7 @@
             [ring.util.http-response :as respond]))
 
 (defn delete-user
-  "Delete a user by Id"
+  "Deletes a user by Id"
   [id]
   (let [deleted-user (query/delete-user {:id id})]
       (respond/ok        {:message (format "User id %s successfully removed" id)})))

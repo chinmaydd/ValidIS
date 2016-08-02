@@ -36,8 +36,8 @@
       :path-params    [network-id :- String]
       :header-params  [authorization :- String]
       :middleware     [token-auth-mw cors-mw authenticated-mw shared-owner-auth-mw]
-      :summary        "Get the information regarding a particular network!" ;; This is real deal, bro
-      :description    "Authorization header expects the following format 'Token {token}'"
+      :summary        "Returns data duplication rates for the CISs in the network." ;; This is real deal, bro
+      :description    "This is the core funciton of ValidIS. It will aggregate all the responses and feed it to the frontend for data visualization. User must own the network. Authorization header expects the following format 'Token {token}'"
       (get-network-information network-id))
 
            ;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -49,8 +49,8 @@
       :header-params [authorization :- String]
       :middleware    [token-auth-mw cors-mw authenticated-mw]
       :body-params   [name :- String location :- String]
-      :summary       "Create a new network. Requires the token to have ID of the user along with authentication."
-      :description   "Authorization header expects the following format 'Token {token}'"
+      :summary       "Creates a new network"
+      :description   "Create a new network in the database. Currently, a way to add networks by default is not supported. Returns the network-id of the network. Authorization header expects the following format 'Token {token}'"
       (create-network-response request name location))
 
     (PATCH "/:network-id" {:as request}
@@ -59,8 +59,8 @@
       :header-params      [authorization :- String]
       :return             {:network-id String}
       :middleware         [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
-      :summary            "Modifies the existing network information. Requires user token and the network must belong to the user"
-      :description        "Authorization header expects the following format 'Token {token}'"
+      :summary            "Modifies the existing network information."
+      :description        "Requires user token and the network must belong to the user. Can patch `name` and `location` of the network. Authorization header expects the following format 'Token {token}'"
       (modify-network-response request network-id name location))
 
     (DELETE "/:network-id"     {:as request}
@@ -68,8 +68,8 @@
       :header-params     [authorization :- String]
       :return            {:message String}
       :middleware        [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
-      :summary           "Used to delete the existing network. Requires user token and the network must belong to the user"
-      :description       "Authorization header expects the following format 'Token {token}'"
+      :summary           "Used to delete the existing network."
+      :description       "All network information is lost. Even if the network was shared with other users, they will (currently) not get notified about it. Authorization header expects the following format 'Token {token}'"
       (delete-network-response network-id))
 
            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -81,7 +81,7 @@
       :header-params [authorization :- String]
       :return        {:message String}
       :middleware    [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
-      :summary       "Used to add a CIS to an existing network"
+      :summary       "Adds a CIS to an existing network"
       :description   "Authorization header expects the following format 'Token {token}'"
       (add-cis-response network-id cis-id))
 
@@ -90,7 +90,7 @@
       :header-params [authorization :- String]
       :return        {:message String}
       :middleware    [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
-      :summary       "Used to remove a CIS from a network"
+      :summary       "Removes a CIS from a network"
       :description   "Authorization header expects the following format 'Token {token}'"
       (remove-cis-response network-id cis-id))
 
@@ -103,8 +103,8 @@
       :header-params [authorization :- String]
       :return        {:message String}
       :middleware    [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
-      :summary       "Used to share the network with another user"
-      :description   "Authorization header expects the following format 'Token {token}'"
+      :summary       "Shares the network with another user"
+      :description   "The shared user is only able to view the network information and not modify it. Authorization header expects the following format 'Token {token}'"
       (add-user-to-network-response network-id user-id))
 
     (DELETE "/:network-id/user/:user-id" {:as request}
@@ -112,6 +112,6 @@
       :header-params [authorization :- String]
       :return        {:message String}
       :middleware    [token-auth-mw cors-mw authenticated-mw owner-auth-mw]
-      :summary       "Used to remove a user from shared list"
+      :summary       "Removes a user from shared list"
       :description   "Authorization header expects the following format 'Token {token}'"
       (remove-user-from-network-response network-id user-id))))
