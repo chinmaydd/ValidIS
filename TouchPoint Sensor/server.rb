@@ -1,6 +1,9 @@
 require 'sinatra'
 require 'json'
 require 'sinatra/cross_origin'
+require './environment.rb'
+require './basic.rb'
+require 'pry'
 
 # Enables cross origin requests. Useful for local testing.
 configure do
@@ -10,7 +13,12 @@ end
 # Main method which will be exposed through the API provided.
 # The Validis hub will make a request to invoke this method and collect duplicate record creation rates.
 def collect_data
-    {:message => "OMG_WHAT"}
+    basic_rate         = exact_rate # Subject to change.
+    name               = ENV['name']
+    rate_data          = {}
+    rate_data['name']  = name
+    rate_data['basic'] = basic_rate
+    rate_data
 end
 
 # For Validis!

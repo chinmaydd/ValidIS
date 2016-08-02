@@ -95,10 +95,19 @@ def register_touchpoint(cis_data)
     end
 end
 
+# Sets the CIS name in the environment file.
+def set_cis_name(name)
+     File.open('environment.rb', 'a') {|file|
+        file.write("ENV['name'] = '" + name + "'\n")
+    }
+end
+
 # Gets the name of the Clinic from the user.
 def get_cis_name
     print "Please enter the name of your clinic: "
-    gets.chomp
+    name = gets.chomp
+    set_cis_name(name)
+    name
 end
 
 # Gets the address of the CIS from the user.
