@@ -91,7 +91,7 @@ def register_touchpoint(cis_data)
         puts "Your ID is as follows: " + get_id(response)
         save_id response
     else
-        puts response_status.body
+        puts response.body
     end
 end
 
